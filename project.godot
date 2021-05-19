@@ -58,6 +58,7 @@ Sprint={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/filters/msaa=1
 quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"
