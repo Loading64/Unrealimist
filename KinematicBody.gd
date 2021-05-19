@@ -9,8 +9,8 @@ var speed = 1
 var standing_speed = 10
 var crouch_speed = 2
 var transition_speed = 20
-var sliding_speed = 20
-var sprinting_speed = 40
+var sliding_speed = 30
+var sprinting_speed = 20
 var h_acceleration = 8
 var air_acceleration = 1
 var normal_acceleration = 6
@@ -85,44 +85,35 @@ func _physics_process(delta):
 		direction += transform.basis.x
 
 	if Input.is_action_pressed("Sprint"):
-		sprinting = true
-		standing = false
-	else:
-		standing = true
-		sprinting = false 
-	if Input.is_action_pressed("Sliding") and not Input.is_action_just_pressed("Sprint"):
+		player_state = state.SPRINTING
+	elif Input.is_action_pressed("Sliding"):# and !Input.is_action_pressed("Sprint"):
 		pcap.shape.height -= transition_speed
-		crouching = true
-		standing = false
+		player_state = state.CROUCHING
 	else:
-		standing = true
-		crouching = false
+		player_state = state.STANDING
 		pcap.shape.height += transition_speed * delta
 	pcap.shape.height = clamp(pcap.shape.height, crouching_height, default_height)
 	
 	if Input.is_action_pressed("Sliding") and Input.is_action_pressed("Sprint"):
 		pcap.shape.height -= transition_speed
-		sliding = true
-		sprinting = false
-		crouching = false
-		standing = false
-	else:
-		standing = true
-		sliding = false
-		pcap.shape.height += transition_speed * delta * 2
+		player_state = state.SLIDING
+#	else:
+#		player_state = state.STANDING
+#		pcap.shape.height += transition_speed * delta * 2
 	pcap.shape.height = clamp(pcap.shape.height, sliding_height, default_height)
-	if sprinting == true:
-		print("sprinting")
-		speed = sprinting_speed
-	if sliding == true:
-		print("sliding")
-		speed = sliding_speed
-	if crouching == true:
-		print("crouching")
-		speed = crouch_speed
-	if standing == true:
-		print("standing")
-		speed = standing_speed
+	match(player_state):
+		state.SPRINTING:
+			print("sprinting")
+			speed = sprinting_speed
+		state.SLIDING:
+			print("sliding")
+			speed = sliding_speed
+		state.CROUCHING:
+			print("crouching")
+			speed = crouch_speed
+		state.STANDING:
+			print("standing")
+			speed = standing_speed
 	if not is_on_floor():
 		print("Falling")
 	direction = direction.normalized()
