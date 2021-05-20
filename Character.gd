@@ -4,6 +4,7 @@ extends KinematicBody
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var state_machine = $AnimationTree.get("parameters/current_animation")
 var standing = false
 var speed = 1
 var standing_speed = 10
@@ -31,7 +32,7 @@ var sliding = false
 var crouching = false
 onready var timer = $Timer
 onready var pcap = $CollisionShape
-onready var head = $Head
+onready var head = $Armature/Head
 onready var ground_check = $GroundCheck
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING}
 var player_state = state.STANDING
@@ -75,34 +76,35 @@ func _physics_process(delta):
 		air_acceleration = 20
 		timer.start()
 		
-	if Input.is_action_pressed("move_forward"):
+	if Input.is_action_pressed("move_backward"):
 		direction -= transform.basis.z
-	elif Input.is_action_pressed("move_backward"):
+	elif Input.is_action_pressed("move_forward"):
 		direction += transform.basis.z
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_right"):
 		direction -= transform.basis.x
-	elif Input.is_action_pressed("move_right"):
+	elif Input.is_action_pressed("move_left"):
 		direction += transform.basis.x
 
 	if Input.is_action_pressed("Sprint"):
 		player_state = state.SPRINTING
 	elif Input.is_action_pressed("Sliding"):# and !Input.is_action_pressed("Sprint"):
-		pcap.shape.height -= transition_speed
+		#pcap.shape.height -= transition_speed
 		player_state = state.CROUCHING
 	else:
 		player_state = state.STANDING
-		pcap.shape.height += transition_speed * delta
-	pcap.shape.height = clamp(pcap.shape.height, crouching_height, default_height)
+
+	#pcap.shape.height = clamp(pcap.shape.height, crouching_height, default_height)
 	
 	if Input.is_action_pressed("Sliding") and Input.is_action_pressed("Sprint"):
-		pcap.shape.height -= transition_speed
+		#pcap.shape.height -= transition_speed
 		player_state = state.SLIDING
 #	else:
 #		player_state = state.STANDING
 #		pcap.shape.height += transition_speed * delta * 2
-	pcap.shape.height = clamp(pcap.shape.height, sliding_height, default_height)
+	#pcap.shape.height = clamp(pcap.shape.height, sliding_height, default_height)
 	match(player_state):
 		state.SPRINTING:
+			state_machine.travel("some_state")
 			print("sprinting")
 			speed = sprinting_speed
 		state.SLIDING:
