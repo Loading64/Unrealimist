@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Rifle.escn" type="PackedScene" id=1]
+[ext_resource path="res://Rifle.gd" type="Script" id=2]
+
+[node name="Rifle" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="RayCast" type="RayCast" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, 100 )

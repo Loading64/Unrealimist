@@ -4,7 +4,7 @@ extends KinematicBody
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var state_machine = $AnimationTree.get("parameters/current_animation")
+#var state_machine
 var standing = false
 var speed = 1
 var standing_speed = 10
@@ -38,6 +38,7 @@ enum state  {SPRINTING, CROUCHING, STANDING, SLIDING}
 var player_state = state.STANDING
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#state_machine = $AnimationTree.get("parameters/playback")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 
@@ -104,16 +105,19 @@ func _physics_process(delta):
 	#pcap.shape.height = clamp(pcap.shape.height, sliding_height, default_height)
 	match(player_state):
 		state.SPRINTING:
-			state_machine.travel("some_state")
+			#state_machine.travel("sprint")
 			print("sprinting")
 			speed = sprinting_speed
 		state.SLIDING:
+			#state_machine.travel("slide")
 			print("sliding")
 			speed = sliding_speed
 		state.CROUCHING:
+			#state_machine.travel("crouch")
 			print("crouching")
 			speed = crouch_speed
 		state.STANDING:
+			#state_machine.travel("run")
 			print("standing")
 			speed = standing_speed
 	if not is_on_floor():
