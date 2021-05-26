@@ -1,10 +1,7 @@
 extends KinematicBody
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-#var state_machine
+
 var standing = false
 var speed = 1
 var standing_speed = 10
@@ -30,15 +27,20 @@ var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
 var crouching = false
+
+
 onready var timer = $Timer
 onready var pcap = $CollisionShape
 onready var head = $Armature/Head
 onready var ground_check = $GroundCheck
+
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING}
+
 var player_state = state.STANDING
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#state_machine = $AnimationTree.get("parameters/playback")
+
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 
@@ -53,7 +55,7 @@ func _input(event):
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-360), deg2rad(360))
 # warning-ignore:unused_argument
 func _physics_process(delta):
-	
+
 	direction = Vector3()
 	full_contact = ground_check.is_colliding()
 	if is_on_floor():
@@ -62,6 +64,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		gravity_vec += Vector3.DOWN * gravity * delta
 		h_acceleration = air_acceleration
+
 	elif is_on_floor() and full_contact:
 		gravity_vec = -get_floor_normal() * gravity
 		double_jump = 1
@@ -85,7 +88,6 @@ func _physics_process(delta):
 		direction -= transform.basis.x
 	elif Input.is_action_pressed("move_left"):
 		direction += transform.basis.x
-
 	if Input.is_action_pressed("Sprint"):
 		player_state = state.SPRINTING
 	elif Input.is_action_pressed("Sliding"):# and !Input.is_action_pressed("Sprint"):
@@ -105,11 +107,9 @@ func _physics_process(delta):
 	#pcap.shape.height = clamp(pcap.shape.height, sliding_height, default_height)
 	match(player_state):
 		state.SPRINTING:
-			#state_machine.travel("sprint")
 			print("sprinting")
 			speed = sprinting_speed
 		state.SLIDING:
-			#state_machine.travel("slide")
 			print("sliding")
 			speed = sliding_speed
 		state.CROUCHING:
