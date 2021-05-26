@@ -1,10 +1,62 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.5
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.1, 0.2, 0.5 )
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "transform"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0.7, 1 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("Head/Camera")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, 0, 0, 0, 1, 1, 1.42857, 1 )
+
+[sub_resource type="Animation" id=4]
+length = 0.1
+tracks/0/type = "transform"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.382683, 0, 0, 0.92388, 1, 1, 1, 0.001, 1, 0, 0, 0, 0.382683, 0, 0, 0.92388, 1, 1, 1 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("Head/Camera")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, -0.258819, 0, 0, 0.965926, 1, 1, 1 )
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "transform"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, -2.98023e-08, 0, 0, 1, 1, 1, 1 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("Head/Camera")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, -0.212132, -0.336396, 0, 0, 0, 1, 1, 1.42857, 1 )
 
 [node name="KinematicBody" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 0 )
@@ -17,10 +69,32 @@ shape = SubResource( 1 )
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70711, -0.707106 )
 
-[node name="OmniLight" type="OmniLight" parent="Head"]
-omni_range = 7.0
+[node name="Camera" type="Camera" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1.42857, 0, 0, 0, 1, 0, -0.212132, -0.336396 )
+
+[node name="SpotLight" type="SpotLight" parent="Head"]
+light_color = Color( 0, 0.976471, 1, 1 )
+light_energy = 16.0
+light_specular = 1.0
+light_bake_mode = 2
+spot_range = 6.0
+spot_angle = 17.8398
+
+[node name="Handloc" type="Spatial" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451, -0.499, -1.193 )
+
+[node name="Spatial" type="Spatial" parent="Head/Handloc"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Head/Handloc/Spatial"]
+mesh = SubResource( 2 )
+material/0 = null
 
 [node name="GroundCheck" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -0.434314, -0.565685 )
 enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Crouch = SubResource( 3 )
+anims/slide = SubResource( 4 )
+anims/standing = SubResource( 5 )
