@@ -33,6 +33,8 @@ onready var timer = $Timer
 onready var pcap = $CollisionShape
 onready var head = $Head
 onready var ground_check = $GroundCheck
+onready var hand = $Head/Hand
+onready var handloc = $Head/HandLoc
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING}
 var player_state = state.STANDING
 # Called when the node enters the scene tree for the first time.

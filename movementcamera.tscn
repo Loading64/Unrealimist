@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
+[ext_resource path="res://Hand.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.5
 
 [sub_resource type="CubeMesh" id=2]
-size = Vector3( 0.1, 0.2, 0.5 )
 
 [sub_resource type="Animation" id=3]
 tracks/0/type = "transform"
@@ -80,14 +80,21 @@ light_bake_mode = 2
 spot_range = 6.0
 spot_angle = 17.8398
 
-[node name="Handloc" type="Spatial" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451, -0.499, -1.193 )
+[node name="HandLoc" type="Spatial" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208, -0.601, -0.844 )
+script = ExtResource( 2 )
+sway_up = Vector3( 0.1, 0, 0 )
+sway_down = Vector3( -0.1, 0, 0 )
+sway_left = Vector3( 0, 0.1, 0 )
+sway_right = Vector3( 0, -0.1, 0 )
 
-[node name="Spatial" type="Spatial" parent="Head/Handloc"]
-
-[node name="MeshInstance" type="MeshInstance" parent="Head/Handloc/Spatial"]
+[node name="MeshInstance" type="MeshInstance" parent="Head/HandLoc"]
+transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 5.96046e-08, -0.8 )
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="Hand" type="Spatial" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, -0.769, -1.121 )
 
 [node name="GroundCheck" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -0.434314, -0.565685 )
