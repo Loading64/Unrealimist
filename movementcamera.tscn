@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
@@ -7,7 +7,11 @@
 radius = 0.5
 height = 1.5
 
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 1, 0, 0, 1 )
+
 [sub_resource type="CubeMesh" id=2]
+material = SubResource( 6 )
 
 [sub_resource type="Animation" id=3]
 tracks/0/type = "transform"
@@ -89,9 +93,18 @@ sway_left = Vector3( 0, 0.1, 0 )
 sway_right = Vector3( 0, -0.1, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Head/HandLoc"]
-transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 5.96046e-08, -0.8 )
+transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.011, -0.8 )
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/MeshInstance"]
+transform = Transform( -0.999999, 1.55431e-14, -1.11759e-06, -2.498e-15, 0.999999, 5.96046e-07, 8.3819e-09, 2.38418e-08, -1, 0, 9.53674e-07, -1.3 )
+enabled = true
+cast_to = Vector3( 0, -1, 10 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/MeshInstance/RayCast"]
+wait_time = 0.1
+one_shot = true
 
 [node name="Hand" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, -0.769, -1.121 )
@@ -105,3 +118,5 @@ cast_to = Vector3( 0, -1.5, 0 )
 anims/Crouch = SubResource( 3 )
 anims/slide = SubResource( 4 )
 anims/standing = SubResource( 5 )
+
+[connection signal="timeout" from="Head/HandLoc/MeshInstance/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]

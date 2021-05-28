@@ -35,7 +35,9 @@ onready var head = $Head
 onready var ground_check = $GroundCheck
 onready var hand = $Head/Hand
 onready var handloc = $Head/HandLoc
-enum state  {SPRINTING, CROUCHING, STANDING, SLIDING}
+onready var GunTimer = $Head/HandLoc/MeshInstance/RayCast/GunTimer
+onready var gunraycast = $Head/HandLoc/MeshInstance/RayCast
+enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING}
 var player_state = state.STANDING
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,6 +45,13 @@ func _ready():
 	
 
 func _input(event):
+	if Input.is_action_pressed("Primary_fire"):
+		GunTimer.start()
+		print("notfiring")
+		if gunraycast.get_collider():
+			print(gunraycast)
+		
+		
 	if event is InputEventMouseMotion and is_on_floor():
 		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
@@ -124,6 +133,12 @@ func _physics_process(delta):
 	movement.x = h_velocity.x + gravity_vec.x
 	movement.y = gravity_vec.y
 	movement = move_and_slide(movement, Vector3.UP)
+
 func _on_Timer_timeout():
 	air_acceleration = 1
+	pass # Replace with function body.
+
+
+func _on_GunTimer_timeout():
+	print("BULLETFIRED")
 	pass # Replace with function body.
