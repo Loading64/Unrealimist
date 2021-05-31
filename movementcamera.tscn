@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
@@ -7,13 +7,30 @@
 radius = 0.5
 height = 1.5
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 6 )
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
+resource_name = "AssualtFire"
+length = 0.08
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/HandLoc/MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.08 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.011, -0.8 ), Vector3( 0, -0.011, -0.676 ), Vector3( 0, -0.011, -0.8 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -29,7 +46,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, 0, 0, 0, 1, 1, 1.42857, 1 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.1
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
@@ -46,7 +63,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, -0.258819, 0, 0, 0.965926, 1, 1, 1 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -63,7 +80,7 @@ tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.212132, -0.336396, 0, 0, 0, 1, 1, 1.42857, 1 )
 
 [node name="KinematicBody" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -74,7 +91,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70711, -0.707106 )
 
 [node name="Camera" type="Camera" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1.42857, 0, 0, 0, 1, 0, -0.212132, -0.336396 )
+transform = Transform( 1, 0, 0, 0, 1.42857, 0, 0, 0, 1, 0, -0.282843, -0.407107 )
 
 [node name="SpotLight" type="SpotLight" parent="Head"]
 light_color = Color( 0, 0.976471, 1, 1 )
@@ -94,13 +111,13 @@ sway_right = Vector3( 0, -0.1, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Head/HandLoc"]
 transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.011, -0.8 )
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="RayCast" type="RayCast" parent="Head/HandLoc/MeshInstance"]
 transform = Transform( -0.999999, 1.55431e-14, -1.11759e-06, -2.498e-15, 0.999999, 5.96046e-07, 8.3819e-09, 2.38418e-08, -1, 0, 9.53674e-07, -1.3 )
 enabled = true
-cast_to = Vector3( 0, -1, 10 )
+cast_to = Vector3( 0, 10, 100 )
 
 [node name="GunTimer" type="Timer" parent="Head/HandLoc/MeshInstance/RayCast"]
 wait_time = 0.1
@@ -115,8 +132,13 @@ enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Crouch = SubResource( 3 )
-anims/slide = SubResource( 4 )
-anims/standing = SubResource( 5 )
+anims/AssualtFire = SubResource( 7 )
+anims/Crouch = SubResource( 4 )
+anims/slide = SubResource( 5 )
+anims/standing = SubResource( 6 )
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="timeout" from="Head/HandLoc/MeshInstance/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]

@@ -4,6 +4,8 @@ extends KinematicBody
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+const MAX_CAM_SHAKE = 0.3
+var damage = 10
 var standing = false
 var speed = 1
 var standing_speed = 10
@@ -29,12 +31,15 @@ var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
 var crouching = false
+onready var statetimer = $StateTimer
 onready var timer = $Timer
 onready var pcap = $CollisionShape
 onready var head = $Head
 onready var ground_check = $GroundCheck
 onready var hand = $Head/Hand
 onready var handloc = $Head/HandLoc
+onready var anim_player = $AnimationPlayer
+onready var camera = $Head/Camera 
 onready var GunTimer = $Head/HandLoc/MeshInstance/RayCast/GunTimer
 onready var gunraycast = $Head/HandLoc/MeshInstance/RayCast
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING}
@@ -45,11 +50,6 @@ func _ready():
 	
 
 func _input(event):
-	if Input.is_action_pressed("Primary_fire"):
-		GunTimer.start()
-		print("notfiring")
-		if gunraycast.get_collider():
-			print(gunraycast)
 		
 		
 	if event is InputEventMouseMotion and is_on_floor():
@@ -61,7 +61,24 @@ func _input(event):
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-360), deg2rad(360))
 # warning-ignore:unused_argument
+func fire():
+	if Input.is_action_pressed("Primary_fire"):
+		if not anim_player.is_playing():
+			camera.translation = lerp(camera.translation, 
+					Vector3(rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 
+					rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 0), 0.05)
+			print("firing")
+			if gunraycast.is_colliding():
+				var target = gunraycast.get_collider()
+				if target.is_in_group("Enemy"):
+					print("hit enemy")
+					target.health -= damage
+		anim_player.play("AssualtFire")
+	else:
+		camera.translation = Vector3()
+		anim_player.stop()
 func _physics_process(delta):
+	fire()
 	
 	direction = Vector3()
 	full_contact = ground_check.is_colliding()
@@ -115,15 +132,19 @@ func _physics_process(delta):
 	match(player_state):
 		state.SPRINTING:
 			print("sprinting")
+			statetimer.start()
 			speed = sprinting_speed
 		state.SLIDING:
 			print("sliding")
+			statetimer.start()
 			speed = sliding_speed
 		state.CROUCHING:
 			print("crouching")
+			statetimer.start()
 			speed = crouch_speed
 		state.STANDING:
 			print("standing")
+			statetimer.start()
 			speed = standing_speed
 	if not is_on_floor():
 		print("Falling")
@@ -141,4 +162,8 @@ func _on_Timer_timeout():
 
 func _on_GunTimer_timeout():
 	print("BULLETFIRED")
+	pass # Replace with function body.
+
+
+func _on_StateTimer_timeout():
 	pass # Replace with function body.
