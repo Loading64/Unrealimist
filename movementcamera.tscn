@@ -13,7 +13,7 @@ albedo_color = Color( 1, 0, 0, 1 )
 [sub_resource type="CubeMesh" id=3]
 material = SubResource( 2 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "AssualtFire"
 length = 0.08
 step = 0.01
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, -0.011, -0.8 ), Vector3( 0, -0.011, -0.676 ), Vector3( 0, -0.011, -0.8 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -46,7 +46,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, 0, 0, 0, 1, 1, 1.42857, 1 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.1
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
@@ -63,7 +63,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, -0.258819, 0, 0, 0.965926, 1, 1, 1 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -132,10 +132,10 @@ enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AssualtFire = SubResource( 7 )
-anims/Crouch = SubResource( 4 )
-anims/slide = SubResource( 5 )
-anims/standing = SubResource( 6 )
+anims/AssualtFire = SubResource( 4 )
+anims/Crouch = SubResource( 5 )
+anims/slide = SubResource( 6 )
+anims/standing = SubResource( 7 )
 
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 0.1
