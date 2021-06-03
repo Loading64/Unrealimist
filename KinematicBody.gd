@@ -5,6 +5,7 @@ extends KinematicBody
 # var a = 2
 # var b = "text"
 const MAX_CAM_SHAKE = 0.3
+var wall_normal
 var damage = 10
 var standing = false
 var speed = 1
@@ -48,6 +49,13 @@ var player_state = state.STANDING
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+func _wallrun():
+	if Input.is_action_pressed("jump"):
+		if Input.is_action_pressed("move_forward"):
+			if is_on_wall():
+				wall_normal = get_slide_collision(0)
+				gravity_vec = Vector3.ZERO
+				direction = -wall_normal.normal * speed
 
 func _input(event):
 		
@@ -61,7 +69,7 @@ func _input(event):
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-360), deg2rad(360))
 # warning-ignore:unused_argument
-func fire():
+func _fire():
 	if Input.is_action_pressed("Primary_fire"):
 		if not anim_player.is_playing():
 			camera.translation = lerp(camera.translation, 
@@ -78,31 +86,35 @@ func fire():
 		camera.translation = Vector3()
 		anim_player.stop()
 func _physics_process(delta):
-	fire()
-	
+	_fire()
+	_wallrun()
 	direction = Vector3()
 	full_contact = ground_check.is_colliding()
 	if is_on_floor():
 		air_acceleration = 1
 		double_jump = 1
-	if not is_on_floor():
+
+	if not is_on_floor() and not _wallrun():
 		gravity_vec += Vector3.DOWN * gravity * delta
 		h_acceleration = air_acceleration
+
 	elif is_on_floor() and full_contact:
 		gravity_vec = -get_floor_normal() * gravity
 		double_jump = 1
 		air_acceleration = 1
+
 	else:
 		gravity_vec = -get_floor_normal()
-	
+
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or ground_check.is_colliding()):
 		gravity_vec = Vector3.UP * jump
+
 	elif Input.is_action_just_pressed("jump") and double_jump == 1 and (is_on_floor() == false or ground_check.is_colliding() == false): 
 		gravity_vec = Vector3.UP * jump
 		double_jump = 0
 		air_acceleration = 30
 		timer.start()
-		
+
 	if Input.is_action_pressed("move_forward"):
 		direction -= transform.basis.z
 	elif Input.is_action_pressed("move_backward"):
@@ -114,12 +126,15 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("Sprint"):
 		player_state = state.SPRINTING
+
 	elif Input.is_action_pressed("Sliding"):# and !Input.is_action_pressed("Sprint"):
 		pcap.shape.height -= transition_speed
 		player_state = state.CROUCHING
+
 	else:
 		player_state = state.STANDING
 		pcap.shape.height += transition_speed * delta
+
 	pcap.shape.height = clamp(pcap.shape.height, crouching_height, default_height)
 	
 	if Input.is_action_pressed("Sliding") and Input.is_action_pressed("Sprint"):
@@ -129,30 +144,41 @@ func _physics_process(delta):
 #		player_state = state.STANDING
 #		pcap.shape.height += transition_speed * delta * 2
 	pcap.shape.height = clamp(pcap.shape.height, sliding_height, default_height)
+	
 	match(player_state):
 		state.SPRINTING:
 			print("sprinting")
 			statetimer.start()
 			speed = sprinting_speed
+
 		state.SLIDING:
 			print("sliding")
 			statetimer.start()
 			speed = sliding_speed
+
 		state.CROUCHING:
 			print("crouching")
 			statetimer.start()
 			speed = crouch_speed
+
 		state.STANDING:
 			print("standing")
 			statetimer.start()
 			speed = standing_speed
+
 	if not is_on_floor():
 		print("Falling")
+
 	direction = direction.normalized()
+	
 	h_velocity = h_velocity.linear_interpolate(direction * speed, h_acceleration * delta)
+	
 	movement.z = h_velocity.z + gravity_vec.z
+	
 	movement.x = h_velocity.x + gravity_vec.x
+	
 	movement.y = gravity_vec.y
+	
 	movement = move_and_slide(movement, Vector3.UP)
 
 func _on_Timer_timeout():

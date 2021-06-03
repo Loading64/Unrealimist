@@ -61,6 +61,10 @@ Primary_fire={
  ]
 }
 
+[physics]
+
+common/physics_fps=240
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
