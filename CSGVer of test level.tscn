@@ -150,6 +150,6 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Badguy" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -28 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.01174, 6.09552, -47.9428 )
 
 [connection signal="timeout" from="KinematicBody/Timer" to="KinematicBody" method="_on_Timer_timeout"]

@@ -14,6 +14,7 @@ var crouch_speed = 2
 var transition_speed = 20
 var sliding_speed = 30
 var sprinting_speed = 20
+var wallrun_speed = 50
 var h_acceleration = 8
 var air_acceleration = 1
 var normal_acceleration = 6
@@ -36,6 +37,7 @@ onready var statetimer = $StateTimer
 onready var timer = $Timer
 onready var pcap = $CollisionShape
 onready var head = $Head
+onready var wall_check = $wallcheck
 onready var ground_check = $GroundCheck
 onready var hand = $Head/Hand
 onready var handloc = $Head/HandLoc
@@ -51,10 +53,13 @@ func _ready():
 	
 func _wallrun():
 	if Input.is_action_pressed("jump"):
-		if Input.is_action_pressed("move_forward"):
-			if is_on_wall():
+		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
+			if wall_check.is_colliding():
 				wall_normal = get_slide_collision(0)
 				gravity_vec = Vector3.ZERO
+				speed = wallrun_speed
+				double_jump = 1
+				air_acceleration = 1
 				direction = -wall_normal.normal * speed
 
 func _input(event):
@@ -106,7 +111,7 @@ func _physics_process(delta):
 	else:
 		gravity_vec = -get_floor_normal()
 
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or ground_check.is_colliding()):
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or ground_check.is_colliding()) or _wallrun():
 		gravity_vec = Vector3.UP * jump
 
 	elif Input.is_action_just_pressed("jump") and double_jump == 1 and (is_on_floor() == false or ground_check.is_colliding() == false): 

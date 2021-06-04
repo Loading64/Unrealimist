@@ -140,5 +140,10 @@ anims/standing = SubResource( 7 )
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="wallcheck" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.857143, -0.8 )
+enabled = true
+cast_to = Vector3( 2, 0, 0 )
+
 [connection signal="timeout" from="Head/HandLoc/MeshInstance/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
