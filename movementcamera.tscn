@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
@@ -13,9 +13,23 @@ albedo_color = Color( 1, 0, 0, 1 )
 [sub_resource type="CubeMesh" id=3]
 material = SubResource( 2 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "AssualtFire"
-length = 0.08
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.12549, 1, 0.027451, 1 )
+
+[sub_resource type="CylinderMesh" id=5]
+lightmap_size_hint = Vector2( 2, 2 )
+material = SubResource( 4 )
+top_radius = 0.2
+bottom_radius = 0.2
+height = 5.0
+radial_segments = 4
+rings = 5
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0.266272, 1 )
+
+[sub_resource type="Animation" id=7]
+length = 0.04
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Head/HandLoc/MeshInstance:translation")
@@ -24,13 +38,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.02, 0.08 ),
+"times": PoolRealArray( 0, 0.01, 0.04 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, -0.011, -0.8 ), Vector3( 0, -0.011, -0.676 ), Vector3( 0, -0.011, -0.8 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -46,7 +60,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, 0, 0, 0, 1, 1, 1.42857, 1 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 length = 0.1
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
@@ -63,7 +77,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, -0.258819, 0, 0, 0.965926, 1, 1, 1 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -123,6 +137,19 @@ cast_to = Vector3( 0, 10, 100 )
 wait_time = 0.1
 one_shot = true
 
+[node name="Laser" type="RayCast" parent="Head/HandLoc"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.008, 0.0367471, -0.448894 )
+cast_to = Vector3( 0, 2, 100 )
+
+[node name="CPUParticles" type="CPUParticles" parent="Head/HandLoc/Laser"]
+transform = Transform( -0.0105, -9.17939e-08, -5.73206e-15, 0, -9.17939e-10, 0.03, -9.17939e-10, 1.05, 6.55671e-08, -4.47035e-07, 0, 6.9 )
+amount = 24
+mesh = SubResource( 5 )
+spread = 1.0
+angular_velocity = 4.0
+color_ramp = SubResource( 6 )
+hue_variation = 0.39
+
 [node name="Hand" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, -0.769, -1.121 )
 
@@ -132,10 +159,10 @@ enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AssualtFire = SubResource( 4 )
-anims/Crouch = SubResource( 5 )
-anims/slide = SubResource( 6 )
-anims/standing = SubResource( 7 )
+anims/AssualtFire = SubResource( 7 )
+anims/Crouch = SubResource( 8 )
+anims/slide = SubResource( 9 )
+anims/standing = SubResource( 10 )
 
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 0.1

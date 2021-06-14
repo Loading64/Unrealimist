@@ -60,7 +60,7 @@ func _wallrun():
 				speed = wallrun_speed
 				double_jump = 1
 				air_acceleration = 1
-				direction = -wall_normal.normal * speed
+				#direction = -wall_normal.normal * speed
 
 func _input(event):
 		
@@ -95,7 +95,7 @@ func _physics_process(delta):
 	_wallrun()
 	direction = Vector3()
 	full_contact = ground_check.is_colliding()
-	if is_on_floor():
+	if is_on_floor() or _wallrun():
 		air_acceleration = 1
 		double_jump = 1
 
@@ -111,7 +111,7 @@ func _physics_process(delta):
 	else:
 		gravity_vec = -get_floor_normal()
 
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or ground_check.is_colliding()) or _wallrun():
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or ground_check.is_colliding()):
 		gravity_vec = Vector3.UP * jump
 
 	elif Input.is_action_just_pressed("jump") and double_jump == 1 and (is_on_floor() == false or ground_check.is_colliding() == false): 
