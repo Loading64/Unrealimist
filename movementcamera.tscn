@@ -107,14 +107,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70711, -0.707106 )
 [node name="Camera" type="Camera" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1.42857, 0, 0, 0, 1, 0, -0.282843, -0.407107 )
 
-[node name="SpotLight" type="SpotLight" parent="Head"]
-light_color = Color( 0, 0.976471, 1, 1 )
-light_energy = 16.0
-light_specular = 1.0
-light_bake_mode = 2
-spot_range = 6.0
-spot_angle = 17.8398
-
 [node name="HandLoc" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208, -0.601, -0.844 )
 script = ExtResource( 2 )
@@ -172,5 +164,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.857143, -0.8 )
 enabled = true
 cast_to = Vector3( 2, 0, 0 )
 
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="Head/HandLoc/MeshInstance/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]

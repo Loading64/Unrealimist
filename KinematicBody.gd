@@ -6,6 +6,10 @@ extends KinematicBody
 # var b = "text"
 const MAX_CAM_SHAKE = 0.3
 var wall_normal
+var player_health = 80
+var ammo = Assualt_rifle_magazine_ammo
+var Assualt_rifle_magazine_ammo = 30
+var Assualt_rifle_ammo_capacity = 150
 var damage = 10
 var standing = false
 var speed = 1
@@ -33,6 +37,7 @@ var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
 var crouching = false
+onready var dashtimer = $DashTimer
 onready var statetimer = $StateTimer
 onready var timer = $Timer
 onready var pcap = $CollisionShape
@@ -45,7 +50,7 @@ onready var anim_player = $AnimationPlayer
 onready var camera = $Head/Camera 
 onready var GunTimer = $Head/HandLoc/MeshInstance/RayCast/GunTimer
 onready var gunraycast = $Head/HandLoc/MeshInstance/RayCast
-enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING}
+enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING, DASHING}
 var player_state = state.STANDING
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -90,7 +95,9 @@ func _fire():
 	else:
 		camera.translation = Vector3()
 		anim_player.stop()
+
 func _physics_process(delta):
+
 	_fire()
 	_wallrun()
 	direction = Vector3()
@@ -128,8 +135,11 @@ func _physics_process(delta):
 		direction -= transform.basis.x
 	elif Input.is_action_pressed("move_right"):
 		direction += transform.basis.x
-
-	if Input.is_action_pressed("Sprint"):
+		
+	if Input.is_action_pressed("Dash"):
+		player_state = state.DASHING
+		
+	elif Input.is_action_pressed("Sprint"):
 		player_state = state.SPRINTING
 
 	elif Input.is_action_pressed("Sliding"):# and !Input.is_action_pressed("Sprint"):
@@ -151,24 +161,31 @@ func _physics_process(delta):
 	pcap.shape.height = clamp(pcap.shape.height, sliding_height, default_height)
 	
 	match(player_state):
+		
+		state.DASHING:
+			print("dashing")
+			h_acceleration = 200
+			air_acceleration = 200
+			dashtimer.start()
+			
+		
 		state.SPRINTING:
-			print("sprinting")
-			statetimer.start()
+
+			#print("sprinting")
 			speed = sprinting_speed
 
 		state.SLIDING:
-			print("sliding")
-			statetimer.start()
+			#print("sliding")
 			speed = sliding_speed
 
 		state.CROUCHING:
-			print("crouching")
-			statetimer.start()
+
+			#print("crouching")
 			speed = crouch_speed
 
 		state.STANDING:
-			print("standing")
-			statetimer.start()
+
+			#print("standing")
 			speed = standing_speed
 
 	if not is_on_floor():
@@ -195,6 +212,10 @@ func _on_GunTimer_timeout():
 	print("BULLETFIRED")
 	pass # Replace with function body.
 
-
 func _on_StateTimer_timeout():
+	pass # Replace with function body.
+
+
+func _on_DashTimer_timeout():
+	player_state = state.STANDING
 	pass # Replace with function body.
