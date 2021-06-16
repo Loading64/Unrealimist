@@ -1,0 +1,11 @@
+Model Information:
+* title:	Racer
+* source:	https://sketchfab.com/3d-models/racer-df57ef51606047e5aa8cbf39be7dd6ca
+* author:	Burhan (https://sketchfab.com/Burhan3D)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Racer" (https://sketchfab.com/3d-models/racer-df57ef51606047e5aa8cbf39be7dd6ca) by Burhan (https://sketchfab.com/Burhan3D) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
+[ext_resource path="res://Assualt Rifle.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -42,6 +43,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, -0.011, -0.8 ), Vector3( 0, -0.011, -0.676 ), Vector3( 0, -0.011, -0.8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/HandLoc/Assualt Rifle:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -5.96046e-08, 0, -0.9 ), Vector3( -5.96046e-08, 0, -0.7 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -115,8 +128,12 @@ sway_down = Vector3( -0.1, 0, 0 )
 sway_left = Vector3( 0, 0.1, 0 )
 sway_right = Vector3( 0, -0.1, 0 )
 
+[node name="Assualt Rifle" parent="Head/HandLoc" instance=ExtResource( 3 )]
+transform = Transform( -6.99382e-09, 0, 0.16, 0, 0.1, 0, -0.1, 0, -4.37114e-09, -5.96046e-08, 0, -0.9 )
+
 [node name="MeshInstance" type="MeshInstance" parent="Head/HandLoc"]
 transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.011, -0.8 )
+visible = false
 mesh = SubResource( 3 )
 material/0 = null
 
@@ -130,7 +147,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Laser" type="RayCast" parent="Head/HandLoc"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.008, 0.0367471, -0.448894 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.008, 0.15, -1.449 )
 cast_to = Vector3( 0, 2, 100 )
 
 [node name="CPUParticles" type="CPUParticles" parent="Head/HandLoc/Laser"]
