@@ -1,9 +1,4 @@
 extends KinematicBody
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 const MAX_CAM_SHAKE = 0.3
 var wall_normal
 var player_health = 80
@@ -31,11 +26,15 @@ var full_contact = false
 var double_jump = 1
 var mouse_sensitivity = 0.06
 var direction = Vector3()
+
 var h_velocity = Vector3()
 var movement = Vector3()
 var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
+var random_spread = 0
+var spread = 0
+var number_of_pellets = 1
 var crouching = false
 onready var dashtimer = $DashTimer
 onready var statetimer = $StateTimer
@@ -50,7 +49,9 @@ onready var anim_player = $AnimationPlayer
 onready var camera = $Head/Camera 
 onready var GunTimer = $Head/HandLoc/MeshInstance/RayCast/GunTimer
 onready var gunraycast = $Head/HandLoc/MeshInstance/RayCast
+enum weapon_state {MELEE,PISTOL,SHOTGUN,RIFLE,EXPLOSIVE,LONG_RANGE}
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING, DASHING}
+var weapon = weapon_state.RIFLE
 var player_state = state.STANDING
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -79,6 +80,22 @@ func _input(event):
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-360), deg2rad(360))
 # warning-ignore:unused_argument
+
+
+func _inventory():
+	if Input.is_action_just_pressed("Shotgun_Select"):
+		weapon = weapon_state.SHOTGUN
+	if Input.is_action_just_pressed("Melee_Select"):
+		weapon = weapon_state.MELEE
+	if Input.is_action_just_pressed("Pistol_Select"):
+		weapon = weapon_state.PISTOL
+	if Input.is_action_just_pressed("Rifle_Select"):
+		weapon = weapon_state.RIFLE
+	if Input.is_action_just_pressed("Explosive_Select"):
+		weapon = weapon_state.EXPLOSIVE
+	if Input.is_action_just_pressed("Long_Range_Select"):
+		weapon = weapon_state.LONG_RANGE
+		
 func _fire():
 	if Input.is_action_pressed("Primary_fire"):
 		if not anim_player.is_playing():
@@ -86,19 +103,55 @@ func _fire():
 					Vector3(rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 
 					rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 0), 0.05)
 			print("firing")
+			for i in range(number_of_pellets):
+				var random_spread = Vector3(rand_range(-spread, spread),rand_range(-spread, spread), 0)
+				gunraycast.rotation_degrees = random_spread
+				var impact_position = gunraycast.get_collision_point()
+				gunraycast.force_raycast_update()
 			if gunraycast.is_colliding():
 				var target = gunraycast.get_collider()
 				if target.is_in_group("Enemy"):
 					print("hit enemy")
-					target.health -= damage
+					target.enemy_health -= damage
 		anim_player.play("AssualtFire")
 	else:
 		camera.translation = Vector3()
 		anim_player.stop()
+func _process(delta):
+	_fire()
+	_inventory()
+	match(weapon):
+		
+		weapon_state.MELEE:
+			print("Melee equipped")
+			damage = 100
+		weapon_state.PISTOL:
+			print("Pistol equipped")
+			damage = 35
+		weapon_state.SHOTGUN:
+			print("Shotgun equipped")
+			random_spread = 2
+			number_of_pellets = 16
+			damage = 20
+		weapon_state.RIFLE:
+			print("Rifle equipped")
+			damage = 20
+		weapon_state.EXPLOSIVE:
+			print("Explosive equipped")
+			damage = 70
+		weapon_state.LONG_RANGE:
+			print("Long Range equipped")
+			damage = 200
+
+func _shoot():
+	for i in range(number_of_pellets):
+		var random_spread = Vector3(rand_range(-spread, spread),rand_range(-spread, spread), 0)
+		$Head/HandLoc/MeshInstance/RayCast.rotation_degrees = random_spread
+		var impact_position = $Head/HandLoc/MeshInstance/RayCast.get_collision_point()
+		$Head/HandLoc/MeshInstance/RayCast.force_raycast_update()
 
 func _physics_process(delta):
 
-	_fire()
 	_wallrun()
 	direction = Vector3()
 	full_contact = ground_check.is_colliding()
