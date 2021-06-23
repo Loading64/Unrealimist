@@ -2,7 +2,7 @@ extends KinematicBody
 const MAX_CAM_SHAKE = 0.3
 var wall_normal
 var player_health = 80
-var ammo = Assualt_rifle_magazine_ammo
+var ammo
 var Assualt_rifle_magazine_ammo = 30
 var Assualt_rifle_ammo_capacity = 150
 var damage = 10
@@ -26,7 +26,6 @@ var full_contact = false
 var double_jump = 1
 var mouse_sensitivity = 0.06
 var direction = Vector3()
-
 var h_velocity = Vector3()
 var movement = Vector3()
 var gravity_vec = Vector3()
@@ -34,7 +33,7 @@ var sprinting = false
 var sliding = false
 var random_spread = 0
 var spread = 0
-var number_of_pellets = 1
+var number_of_pellets = 0
 var crouching = false
 onready var dashtimer = $DashTimer
 onready var statetimer = $StateTimer

@@ -155,4 +155,19 @@ one_shot = true
 [node name="Badguy" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.01174, 6.09552, -47.9428 )
 
+[node name="Badguy2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.02348, 12.191, -95.8856 )
+
+[node name="Badguy3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96478, 18.2866, 55.1716 )
+
+[node name="Badguy4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 26.8, 30.3821, 29.2286 )
+
+[node name="Badguy5" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -12.0587, 36.4776, 0.286008 )
+
+[node name="Badguy6" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -22.9174, 47.5731, -28.6566 )
+
 [connection signal="timeout" from="KinematicBody/Timer" to="KinematicBody" method="_on_Timer_timeout"]
