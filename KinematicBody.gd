@@ -31,9 +31,6 @@ var movement = Vector3()
 var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
-var random_spread = 0
-var spread = 0
-var number_of_pellets = 0
 var crouching = false
 onready var dashtimer = $DashTimer
 onready var statetimer = $StateTimer
@@ -102,11 +99,6 @@ func _fire():
 					Vector3(rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 
 					rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 0), 0.05)
 			print("firing")
-			for i in range(number_of_pellets):
-				var random_spread = Vector3(rand_range(-spread, spread),rand_range(-spread, spread), 0)
-				gunraycast.rotation_degrees = random_spread
-				var impact_position = gunraycast.get_collision_point()
-				gunraycast.force_raycast_update()
 			if gunraycast.is_colliding():
 				var target = gunraycast.get_collider()
 				if target.is_in_group("Enemy"):
@@ -129,8 +121,6 @@ func _process(delta):
 			damage = 35
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
-			random_spread = 2
-			number_of_pellets = 16
 			damage = 20
 		weapon_state.RIFLE:
 			print("Rifle equipped")
@@ -141,13 +131,6 @@ func _process(delta):
 		weapon_state.LONG_RANGE:
 			print("Long Range equipped")
 			damage = 200
-
-func _shoot():
-	for i in range(number_of_pellets):
-		var random_spread = Vector3(rand_range(-spread, spread),rand_range(-spread, spread), 0)
-		$Head/HandLoc/MeshInstance/RayCast.rotation_degrees = random_spread
-		var impact_position = $Head/HandLoc/MeshInstance/RayCast.get_collision_point()
-		$Head/HandLoc/MeshInstance/RayCast.force_raycast_update()
 
 func _physics_process(delta):
 

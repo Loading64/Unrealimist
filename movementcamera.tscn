@@ -1,35 +1,25 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
 [ext_resource path="res://Assualt Rifle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Mossberg 500.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.5
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SphereMesh" id=2]
+radial_segments = 4
+rings = 1
+
+[sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="CubeMesh" id=3]
-material = SubResource( 2 )
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.12549, 1, 0.027451, 1 )
-
-[sub_resource type="CylinderMesh" id=5]
-lightmap_size_hint = Vector2( 2, 2 )
-material = SubResource( 4 )
-top_radius = 0.2
-bottom_radius = 0.2
-height = 5.0
-radial_segments = 4
-rings = 5
-
-[sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0.266272, 1 )
-
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 length = 0.04
 step = 0.01
 tracks/0/type = "value"
@@ -57,7 +47,7 @@ tracks/1/keys = {
 "values": [ Vector3( -5.96046e-08, 0, -0.9 ), Vector3( -5.96046e-08, 0, -0.7 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -73,7 +63,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, 0, 0, 0, 1, 1, 1.42857, 1 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
@@ -90,7 +80,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, -0.258819, 0, 0, 0.965926, 1, 1, 1 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -131,13 +121,236 @@ sway_right = Vector3( 0, -0.1, 0 )
 [node name="Assualt Rifle" parent="Head/HandLoc" instance=ExtResource( 3 )]
 transform = Transform( -6.99382e-09, 0, 0.16, 0, 0.1, 0, -0.1, 0, -4.37114e-09, -5.96046e-08, 0, -0.9 )
 
+[node name="Laser" type="RayCast" parent="Head/HandLoc/Assualt Rifle"]
+transform = Transform( -6.01032e-07, 0, 10, 0, 10, 0, -6.25, 0, -1.09279e-07, 5.49, 1.5, -0.0499995 )
+cast_to = Vector3( 0, 2, 100 )
+
+[node name="Pellet M" type="CPUParticles" parent="Head/HandLoc/Assualt Rifle/Laser"]
+transform = Transform( 0.245, 2.96159e-08, 2.14186e-08, -3.09805e-08, -2.26301e-08, 0.354376, 2.14186e-08, -0.338765, -9.49778e-09, -2.98023e-08, 0.00739396, 0.414079 )
+emitting = false
+amount = 1
+lifetime = 10.0
+one_shot = true
+speed_scale = 32.0
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Assualt Rifle/Laser/Pellet M" groups=[
+"Raycast",
+]]
+transform = Transform( -0.999999, 1.19388e-07, -1.20501e-06, 7.01536e-08, -3.47266e-08, -0.732257, -8.74227e-08, -1.36564, -7.78748e-07, -1.19209e-07, 0, -0.0906308 )
+enabled = true
+cast_to = Vector3( 0, -1, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Assualt Rifle/Laser/Pellet M/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Mossberg 500" parent="Head/HandLoc" instance=ExtResource( 4 )]
+transform = Transform( 0.290304, 0, 0, 0, -1.01517e-08, 0.473966, 0, -0.229376, -2.04619e-08, -0.2, 0.285714, -1.05392 )
+visible = false
+
+[node name="Laser" type="RayCast" parent="Head/HandLoc/Mossberg 500"]
+transform = Transform( -1, 0, -8.74228e-08, -1.26451e-07, -7.44049e-08, 1.44643, -1.13806e-15, 0.691358, 1.30179e-08, -0.008, 0.15, -0.2 )
+cast_to = Vector3( 0, 2, 100 )
+
+[node name="Pellet M" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.245, 2.96159e-08, 2.14186e-08, -3.09805e-08, -2.26301e-08, 0.354376, 2.14186e-08, -0.338765, -9.49778e-09, -2.66358e-07, 0.435965, 3.01408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet M" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -2.00347e-15, -9.07044e-16, 0, -0.0871558, -0.996195, -3.08365e-22, 0.996194, -0.0871559, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet M/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet U" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.245, 2.95032e-08, 2.32853e-08, -3.08626e-08, -0.0427064, 0.353028, 2.32853e-08, -0.337476, -0.0213532, -2.71946e-07, 0.435965, 3.01408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet U" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -1.74513e-07, 7.6194e-09, -7.61939e-09, -0.0871557, -0.996195, 1.74513e-07, 0.996194, -0.0871558, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet U/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet D" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.245, 0, 0, 0, 0.0296658, 0.352222, 0, -0.339082, 0.0308154, -2.70084e-07, 0.435965, 3.01408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet D" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13815e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet D/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet DL" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.140526, 0.0192007, 0.227969, -0.254001, 0.0170156, 0.202026, -1.1369e-08, -0.339082, 0.0308155, -3.07336e-07, 0.435965, 3.01408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet DL" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet DL/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet DR" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.103541, -0.0212435, -0.252225, 0.281026, 0.0125373, 0.148855, -9.89319e-09, -0.339082, 0.0308154, -3.07336e-07, 0.435965, 3.01408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet DR" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet DR/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet R" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.244068, 0.0337433, 2.25938e-08, -3.04951e-08, -2.25966e-08, 0.354376, 0.018684, -0.337476, -7.81636e-09, -3.07336e-07, 0.435965, 3.01408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet R" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet R/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet L" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.244068, -0.0337433, 2.00804e-08, -3.1466e-08, -2.25967e-08, 0.354376, -0.018684, -0.337476, -1.10832e-08, -3.07336e-07, 0.435965, 3.01408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet L" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet L/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet UR" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.200692, 0.0193544, -0.159991, 0.177853, -0.034983, 0.289183, 2.09773e-08, -0.337476, -0.0213532, -3.07336e-07, 0.435965, 3.01408 )
+visible = false
+amount = 400
+lifetime = 40.0
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet UR" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet UR/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet UR2" type="CPUParticles" parent="Head/HandLoc/Mossberg 500/Laser"]
+transform = Transform( 0.187681, -0.0216897, 0.179296, -0.199314, -0.032715, 0.270435, 1.652e-08, -0.337476, -0.0213532, -3.07336e-07, 0.435965, 3.01408 )
+amount = 400
+lifetime = 40.0
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 2 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/Laser/Pellet UR2" groups=[
+"Raycast",
+]]
+transform = Transform( 0.999999, -1.79231e-07, 5.79129e-09, -7.33461e-09, -0.104528, -0.994522, 1.78377e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Head/HandLoc/Mossberg 500/Laser/Pellet UR2/RayCast"]
+wait_time = 0.1
+one_shot = true
+
 [node name="MeshInstance" type="MeshInstance" parent="Head/HandLoc"]
 transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.011, -0.8 )
 visible = false
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 material/0 = null
 
-[node name="RayCast" type="RayCast" parent="Head/HandLoc/MeshInstance"]
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/MeshInstance" groups=[
+"Raycast",
+]]
 transform = Transform( -0.999999, 1.55431e-14, -1.11759e-06, -2.498e-15, 0.999999, 5.96046e-07, 8.3819e-09, 2.38418e-08, -1, 0, 9.53674e-07, -1.3 )
 enabled = true
 cast_to = Vector3( 0, 10, 100 )
@@ -145,19 +358,6 @@ cast_to = Vector3( 0, 10, 100 )
 [node name="GunTimer" type="Timer" parent="Head/HandLoc/MeshInstance/RayCast"]
 wait_time = 0.1
 one_shot = true
-
-[node name="Laser" type="RayCast" parent="Head/HandLoc"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.008, 0.15, -1.449 )
-cast_to = Vector3( 0, 2, 100 )
-
-[node name="CPUParticles" type="CPUParticles" parent="Head/HandLoc/Laser"]
-transform = Transform( -0.0105, -9.17939e-08, -5.73206e-15, 0, -9.17939e-10, 0.03, -9.17939e-10, 1.05, 6.55671e-08, -4.47035e-07, 0, 6.9 )
-amount = 24
-mesh = SubResource( 5 )
-spread = 1.0
-angular_velocity = 4.0
-color_ramp = SubResource( 6 )
-hue_variation = 0.39
 
 [node name="Hand" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, -0.769, -1.121 )
@@ -168,10 +368,10 @@ enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AssualtFire = SubResource( 7 )
-anims/Crouch = SubResource( 8 )
-anims/slide = SubResource( 9 )
-anims/standing = SubResource( 10 )
+anims/AssualtFire = SubResource( 5 )
+anims/Crouch = SubResource( 6 )
+anims/slide = SubResource( 7 )
+anims/standing = SubResource( 8 )
 
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -185,6 +385,16 @@ cast_to = Vector3( 2, 0, 0 )
 wait_time = 0.1
 one_shot = true
 
+[connection signal="timeout" from="Head/HandLoc/Assualt Rifle/Laser/Pellet M/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet M/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet U/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet D/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet DL/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet DR/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet R/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet L/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet UR/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="Head/HandLoc/Mossberg 500/Laser/Pellet UR2/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="Head/HandLoc/MeshInstance/RayCast/GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]
