@@ -99,11 +99,12 @@ func _fire():
 					Vector3(rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 
 					rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 0), 0.05)
 			print("firing")
-			if gunraycast.is_colliding():
-				var target = gunraycast.get_collider()
-				if target.is_in_group("Enemy"):
-					print("hit enemy")
-					target.enemy_health -= damage
+			if gunraycast.is_visible_in_tree:
+				if gunraycast.is_colliding():
+					var target = gunraycast.get_collider()
+					if target.is_in_group("Enemy"):
+						print("hit enemy")
+						target.enemy_health -= damage
 		anim_player.play("AssualtFire")
 	else:
 		camera.translation = Vector3()
