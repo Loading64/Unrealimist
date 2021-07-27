@@ -43,8 +43,8 @@ onready var hand = $Head/Hand
 onready var handloc = $Head/HandLoc
 onready var anim_player = $AnimationPlayer
 onready var camera = $Head/Camera 
-onready var GunTimer = $Head/HandLoc/MeshInstance/RayCast/GunTimer
-onready var gunraycast = $Head/HandLoc/MeshInstance/RayCast
+onready var GunTimer = $Head/HandLoc/RayCast/GunTimer
+onready var gunraycast = $Head/HandLoc/RayCast
 enum weapon_state {MELEE,PISTOL,SHOTGUN,RIFLE,EXPLOSIVE,LONG_RANGE}
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING, DASHING}
 var weapon = weapon_state.RIFLE
@@ -99,7 +99,7 @@ func _fire():
 					Vector3(rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 
 					rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 0), 0.05)
 			print("firing")
-			if gunraycast.is_visible_in_tree:
+			if gunraycast.is_visible_in_tree():
 				if gunraycast.is_colliding():
 					var target = gunraycast.get_collider()
 					if target.is_in_group("Enemy"):
@@ -121,18 +121,23 @@ func _process(delta):
 			print("Pistol equipped")
 			damage = 35
 		weapon_state.SHOTGUN:
+			gunraycast.cast_to = Vector3(0,10,100)
+			gunraycast.force_raycast_update()
 			print("Shotgun equipped")
-			damage = 20
+			damage = 150
+			GunTimer.wait_time = 2
 		weapon_state.RIFLE:
+			gunraycast.cast_to = Vector3(0,50,1000)
+			gunraycast.force_raycast_update() 
 			print("Rifle equipped")
 			damage = 20
+			GunTimer.wait_time = 0.1
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
 		weapon_state.LONG_RANGE:
 			print("Long Range equipped")
 			damage = 200
-
 func _physics_process(delta):
 
 	_wallrun()
