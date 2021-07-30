@@ -51,7 +51,7 @@ surfaces/0 = {
 "vertex_count": 580
 }
 
-[sub_resource type="ArrayMesh" id=5]
+[sub_resource type="ArrayMesh" id=4]
 resource_name = "Mossberg 500_3"
 surfaces/0 = {
 "aabb": AABB( -0.11605, -0.7778, -0.08874, 0.2321, 1.81985, 0.31457 ),
@@ -66,7 +66,7 @@ surfaces/0 = {
 "vertex_count": 251
 }
 
-[sub_resource type="ArrayMesh" id=6]
+[sub_resource type="ArrayMesh" id=5]
 resource_name = "Mossberg 500_4"
 surfaces/0 = {
 "aabb": AABB( 0.03745, -0.26184, 0.10822, 0.07005, 0.1911, 0.05219 ),
@@ -97,9 +97,9 @@ mesh = SubResource( 3 )
 material/0 = null
 
 [node name="Mossberg 500_3" type="MeshInstance" parent="."]
-mesh = SubResource( 5 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Mossberg 500_4" type="MeshInstance" parent="."]
-mesh = SubResource( 6 )
+mesh = SubResource( 5 )
 material/0 = null

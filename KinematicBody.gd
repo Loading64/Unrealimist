@@ -45,9 +45,9 @@ onready var anim_player = $AnimationPlayer
 onready var camera = $Head/Camera 
 onready var GunTimer = $Head/HandLoc/RayCast/GunTimer
 onready var gunraycast = $Head/HandLoc/RayCast
-enum weapon_state {MELEE,PISTOL,SHOTGUN,RIFLE,EXPLOSIVE,LONG_RANGE}
+enum weapon_state {MELEE,REVOLVER,SHOTGUN,RIFLE,EXPLOSIVE,LONG_RANGE}
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING, DASHING}
-var weapon = weapon_state.RIFLE
+var weapon = weapon_state.MELEE
 var player_state = state.STANDING
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -76,21 +76,72 @@ func _input(event):
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-360), deg2rad(360))
 # warning-ignore:unused_argument
+func update_weapon():
+	$"Head/HandLoc/revolver".visible = false
+	$"Head/HandLoc/Assualt Rifle".visible = false
+	$"Head/HandLoc/Mossberg 500".visible = false
+	match(weapon):
+		
+		weapon_state.MELEE:
+			print("Melee equipped")
+			damage = 300
+			gunraycast.cast_to = Vector3(0,0,60)
+		weapon_state.REVOLVER:
+			gunraycast.transform = $"Head/HandLoc/revolver/Position3D".transform
+			gunraycast.cast_to = Vector3(0,0,1000)
+			print("Revolver equipped")
+			damage = 200
+			$"Head/HandLoc/revolver".visible = true
+			GunTimer.wait_time = 0.1
 
+		weapon_state.SHOTGUN:
+			gunraycast.transform = $"Head/HandLoc/Mossberg 500/Position3D".transform
+			gunraycast.cast_to = Vector3(0,10,100)
+			gunraycast.force_raycast_update()
+			print("Shotgun equipped")
+			damage = 150
+			GunTimer.wait_time = 1.2
+			$"Head/HandLoc/Mossberg 500".visible = true
+		weapon_state.RIFLE:
+			gunraycast.transform = $"Head/HandLoc/Assualt Rifle/Position3D".transform
+			gunraycast.cast_to = Vector3(0,50,1000)
+			gunraycast.force_raycast_update() 
+			print("Rifle equipped")
+			damage = 20
+			GunTimer.wait_time = 0.04
+			$"Head/HandLoc/Assualt Rifle".visible = true
+		weapon_state.EXPLOSIVE:
+			print("Explosive equipped")
+			damage = 70
+			GunTimer.wait_time = 1
+		weapon_state.LONG_RANGE:
+			print("Long Range equipped")
+			damage = 200
+			GunTimer.wait_time = 3
 
 func _inventory():
+	var changed = false 
 	if Input.is_action_just_pressed("Shotgun_Select"):
 		weapon = weapon_state.SHOTGUN
+		changed = true
 	if Input.is_action_just_pressed("Melee_Select"):
 		weapon = weapon_state.MELEE
+		changed = true
 	if Input.is_action_just_pressed("Pistol_Select"):
-		weapon = weapon_state.PISTOL
+		weapon = weapon_state.REVOLVER
+		changed = true
 	if Input.is_action_just_pressed("Rifle_Select"):
 		weapon = weapon_state.RIFLE
+		changed = true
 	if Input.is_action_just_pressed("Explosive_Select"):
 		weapon = weapon_state.EXPLOSIVE
+		changed = true
 	if Input.is_action_just_pressed("Long_Range_Select"):
 		weapon = weapon_state.LONG_RANGE
+		changed = true
+	
+	if changed:
+		update_weapon()
 		
 func _fire():
 	if Input.is_action_pressed("Primary_fire"):
@@ -112,32 +163,7 @@ func _fire():
 func _process(delta):
 	_fire()
 	_inventory()
-	match(weapon):
-		
-		weapon_state.MELEE:
-			print("Melee equipped")
-			damage = 100
-		weapon_state.PISTOL:
-			print("Pistol equipped")
-			damage = 35
-		weapon_state.SHOTGUN:
-			gunraycast.cast_to = Vector3(0,10,100)
-			gunraycast.force_raycast_update()
-			print("Shotgun equipped")
-			damage = 150
-			GunTimer.wait_time = 2
-		weapon_state.RIFLE:
-			gunraycast.cast_to = Vector3(0,50,1000)
-			gunraycast.force_raycast_update() 
-			print("Rifle equipped")
-			damage = 20
-			GunTimer.wait_time = 0.1
-		weapon_state.EXPLOSIVE:
-			print("Explosive equipped")
-			damage = 70
-		weapon_state.LONG_RANGE:
-			print("Long Range equipped")
-			damage = 200
+	
 func _physics_process(delta):
 
 	_wallrun()

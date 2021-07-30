@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
 [ext_resource path="res://Assualt Rifle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Mossberg 500.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ShotgunForeend.tscn" type="PackedScene" id=5]
+[ext_resource path="res://revolver.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -13,14 +14,14 @@ height = 1.5
 [sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
 params_depth_draw_mode = 1
-albedo_color = Color( 0.623529, 0.623529, 0.623529, 0.0235294 )
+albedo_color = Color( 0.917969, 0.681305, 0.681305, 0.0470588 )
 
 [sub_resource type="SphereMesh" id=3]
 material = SubResource( 2 )
 radial_segments = 4
 rings = 1
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 length = 0.04
 step = 0.01
 tracks/0/type = "value"
@@ -36,7 +37,7 @@ tracks/0/keys = {
 "values": [ Vector3( -5.96046e-08, 0, -0.9 ), Vector3( -5.96046e-08, 0, -0.7 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -52,7 +53,43 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, 0, 0, 0, 1, 1, 1.42857, 1 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
+resource_name = "Revolver Fire"
+length = 0.45
+step = 0.05
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Head/HandLoc/revolver")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/HandLoc/revolver:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.1, -0.285714, -0.7 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/HandLoc/revolver:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.16, 0.41 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 90, 0 ), Vector3( -1.23965e-06, 90, 55.008 ), Vector3( 3.63086e-07, 90, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
 resource_name = "ShotgunFire"
 length = 1.2
 tracks/0/type = "transform"
@@ -82,7 +119,7 @@ tracks/2/keys = {
 "values": [ Vector3( -90, 0, 0 ), Vector3( -1.30225, -48.8551, 35.3964 ), Vector3( -1.30225, -48.8551, 35.3964 ), Vector3( -1.30225, -48.8551, 35.3964 ), Vector3( -1.30225, -48.8551, 35.3964 ), Vector3( -1.30225, -48.8551, 35.3964 ), Vector3( -90, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
@@ -99,7 +136,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, -0.282843, -0.407107, -0.258819, 0, 0, 0.965926, 1, 1, 1 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -153,9 +190,11 @@ explosiveness = 0.05
 mesh = SubResource( 3 )
 spread = 90.0
 
+[node name="Position3D" type="Position3D" parent="Head/HandLoc/Assualt Rifle"]
+transform = Transform( -1, 0, -1.39876e-07, 0, 1, 0, 5.46392e-08, 0, -1, 9.85859, 1.94739, 3.57628e-07 )
+
 [node name="Mossberg 500" parent="Head/HandLoc" instance=ExtResource( 4 )]
-transform = Transform( 0.292027, 0, 0, 0, -1.7321e-08, 0.291111, 0, -0.396258, -1.27249e-08, 0.00839821, 0.171418, -1.05392 )
-visible = false
+transform = Transform( 0.292027, 0, 0, 0, -1.7321e-08, 0.291111, 0, -0.396258, -1.27249e-08, 0.1, -0.285715, -1.05392 )
 
 [node name="Pellet M" type="CPUParticles" parent="Head/HandLoc/Mossberg 500"]
 transform = Transform( -0.245, -1.1932e-13, -2.14186e-08, 1.15911e-14, -0.49, -4.01052e-08, -2.14186e-08, -2.00555e-08, 0.245001, -0.008, 4.50966, 0.101408 )
@@ -339,16 +378,38 @@ one_shot = true
 
 [node name="Mossberg 500_2002" parent="Head/HandLoc/Mossberg 500" instance=ExtResource( 5 )]
 
+[node name="Position3D" type="Position3D" parent="Head/HandLoc/Mossberg 500"]
+transform = Transform( -1, 1.18626e-07, 3.80938e-15, -6.44272e-08, -0.999999, -6.42251e-08, -3.8334e-15, -1.18999e-07, 1, -1.19209e-07, 4.795, 0.2 )
+
+[node name="revolver" parent="Head/HandLoc" instance=ExtResource( 6 )]
+transform = Transform( -4.90699e-09, 6.47812e-10, 0.1, 0, 0.102226, -6.33705e-10, -0.112259, -2.83168e-17, -4.37114e-09, 0.1, -0.285714, -0.7 )
+
+[node name="Pellet M" type="CPUParticles" parent="Head/HandLoc/revolver"]
+transform = Transform( 1.07093e-08, -0.343, -3.8783e-08, 0.35, 2.14188e-08, 1.5299e-08, -1.07093e-08, -3.50485e-08, 0.245001, 4, 3.9, 0 )
+amount = 400
+lifetime = 9.0
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 3 )
+spread = 90.0
+
+[node name="Position3D" type="Position3D" parent="Head/HandLoc/revolver"]
+transform = Transform( -1, -5.04492e-16, -7.78761e-08, 6.08373e-16, 1, -1.23981e-08, 9.81397e-08, -1.29563e-08, -1, 4.454, 4, 0 )
+
 [node name="RayCast" type="RayCast" parent="Head/HandLoc" groups=[
 "Raycast",
 ]]
-transform = Transform( 1.5299e-09, 0.0391652, -3.00209e-09, 0.035, -1.71197e-09, 0, -1.33748e-16, -3.42393e-09, -0.0343399, 0.00600207, 0.196293, -3.10383 )
+transform = Transform( 1.5299e-09, 0.0391652, -3.00209e-09, 0.035, -1.71197e-09, 0, -1.33748e-16, -3.42393e-09, -0.0343399, 0.1, 0.1, -1.1 )
 enabled = true
-cast_to = Vector3( 0, 50, 10000 )
+cast_to = Vector3( 0, 0, 1000 )
 
 [node name="GunTimer" type="Timer" parent="Head/HandLoc/RayCast"]
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
+__meta__ = {
+"_editor_description_": "This is for ROF
+"
+}
 
 [node name="Hand" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, -0.769, -1.121 )
@@ -359,11 +420,12 @@ enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AssualtFire = SubResource( 6 )
-anims/Crouch = SubResource( 7 )
-anims/ShotgunFire = SubResource( 8 )
-anims/slide = SubResource( 9 )
-anims/standing = SubResource( 10 )
+anims/AssualtFire = SubResource( 4 )
+anims/Crouch = SubResource( 5 )
+"anims/Revolver Fire" = SubResource( 9 )
+anims/ShotgunFire = SubResource( 6 )
+anims/slide = SubResource( 7 )
+anims/standing = SubResource( 8 )
 
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 0.1
