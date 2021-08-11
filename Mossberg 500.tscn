@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://SGMODEL/Material_002.material" type="Material" id=1]
 [ext_resource path="res://SGMODEL/Material_003.material" type="Material" id=2]
 [ext_resource path="res://SGMODEL/Material_001.material" type="Material" id=3]
 [ext_resource path="res://SGMODEL/Material_010.material" type="Material" id=4]
 [ext_resource path="res://SGMODEL/Material_004.material" type="Material" id=5]
+[ext_resource path="res://ShotgunForeend.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Mossberg 500_0"
@@ -81,6 +82,31 @@ surfaces/0 = {
 "vertex_count": 28
 }
 
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+params_depth_draw_mode = 1
+albedo_color = Color( 0.917647, 0.682353, 0.682353, 0.0156863 )
+
+[sub_resource type="SphereMesh" id=7]
+material = SubResource( 6 )
+radial_segments = 4
+rings = 1
+
+[sub_resource type="ArrayMesh" id=8]
+resource_name = "Mossberg 500_2001"
+surfaces/0 = {
+"aabb": AABB( -0.18606, 1.09524, -0.35769, 0.37212, 1.83169, 0.42969 ),
+"array_data": PoolByteArray( 0, 0, 0, 0, 168, 82, 59, 64, 37, 35, 183, 190, 63, 0, 147, 0, 0, 0, 0, 0, 168, 82, 59, 64, 37, 35, 183, 190, 63, 0, 147, 0, 131, 134, 62, 62, 211, 48, 140, 63, 100, 35, 128, 190, 63, 0, 147, 0, 131, 134, 62, 62, 211, 48, 140, 63, 100, 35, 128, 190, 63, 0, 147, 0, 0, 0, 0, 0, 211, 48, 140, 63, 37, 35, 183, 190, 63, 0, 147, 0, 131, 134, 62, 62, 211, 48, 140, 63, 100, 35, 128, 190, 0, 129, 0, 0, 0, 0, 0, 0, 211, 48, 140, 63, 188, 116, 147, 61, 0, 129, 0, 0, 0, 0, 0, 0, 211, 48, 140, 63, 37, 35, 183, 190, 0, 129, 0, 0, 131, 134, 62, 190, 168, 82, 59, 64, 100, 35, 128, 190, 193, 0, 147, 0, 131, 134, 62, 190, 168, 82, 59, 64, 100, 35, 128, 190, 193, 0, 147, 0, 0, 0, 0, 0, 211, 48, 140, 63, 37, 35, 183, 190, 193, 0, 147, 0, 0, 0, 0, 0, 211, 48, 140, 63, 37, 35, 183, 190, 193, 0, 147, 0, 131, 134, 62, 190, 211, 48, 140, 63, 100, 35, 128, 190, 193, 0, 147, 0, 0, 0, 0, 0, 168, 82, 59, 64, 37, 35, 183, 190, 0, 127, 0, 0, 131, 134, 62, 190, 168, 82, 59, 64, 12, 31, 17, 189, 0, 127, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 12, 31, 17, 189, 0, 127, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 100, 35, 128, 190, 127, 0, 0, 0, 131, 134, 62, 62, 211, 48, 140, 63, 12, 31, 17, 189, 127, 0, 0, 0, 131, 134, 62, 62, 211, 48, 140, 63, 100, 35, 128, 190, 127, 0, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 12, 31, 17, 189, 63, 0, 109, 0, 131, 134, 62, 62, 168, 82, 59, 64, 12, 31, 17, 189, 63, 0, 109, 0, 0, 0, 0, 0, 211, 48, 140, 63, 188, 116, 147, 61, 63, 0, 109, 0, 0, 0, 0, 0, 211, 48, 140, 63, 188, 116, 147, 61, 63, 0, 109, 0, 131, 134, 62, 62, 211, 48, 140, 63, 12, 31, 17, 189, 63, 0, 109, 0, 0, 0, 0, 0, 168, 82, 59, 64, 188, 116, 147, 61, 193, 0, 109, 0, 0, 0, 0, 0, 168, 82, 59, 64, 188, 116, 147, 61, 193, 0, 109, 0, 131, 134, 62, 190, 211, 48, 140, 63, 12, 31, 17, 189, 193, 0, 109, 0, 131, 134, 62, 190, 211, 48, 140, 63, 12, 31, 17, 189, 193, 0, 109, 0, 0, 0, 0, 0, 211, 48, 140, 63, 188, 116, 147, 61, 193, 0, 109, 0, 131, 134, 62, 190, 168, 82, 59, 64, 12, 31, 17, 189, 129, 0, 0, 0, 131, 134, 62, 190, 211, 48, 140, 63, 100, 35, 128, 190, 129, 0, 0, 0, 131, 134, 62, 190, 211, 48, 140, 63, 12, 31, 17, 189, 129, 0, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 100, 35, 128, 190, 63, 0, 147, 0, 131, 134, 62, 190, 211, 48, 140, 63, 100, 35, 128, 190, 0, 129, 0, 0, 131, 134, 62, 62, 211, 48, 140, 63, 12, 31, 17, 189, 0, 129, 0, 0, 131, 134, 62, 190, 211, 48, 140, 63, 12, 31, 17, 189, 0, 129, 0, 0, 0, 0, 0, 0, 168, 82, 59, 64, 37, 35, 183, 190, 193, 0, 147, 0, 131, 134, 62, 62, 168, 82, 59, 64, 100, 35, 128, 190, 0, 127, 0, 0, 131, 134, 62, 190, 168, 82, 59, 64, 100, 35, 128, 190, 0, 127, 0, 0, 0, 0, 0, 0, 168, 82, 59, 64, 188, 116, 147, 61, 0, 127, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 12, 31, 17, 189, 127, 0, 0, 0, 0, 0, 0, 0, 168, 82, 59, 64, 188, 116, 147, 61, 63, 0, 109, 0, 131, 134, 62, 190, 168, 82, 59, 64, 12, 31, 17, 189, 193, 0, 109, 0, 131, 134, 62, 190, 168, 82, 59, 64, 100, 35, 128, 190, 129, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 1, 0, 4, 0, 3, 0, 5, 0, 7, 0, 6, 0, 8, 0, 12, 0, 10, 0, 13, 0, 15, 0, 14, 0, 16, 0, 18, 0, 17, 0, 20, 0, 23, 0, 22, 0, 24, 0, 28, 0, 26, 0, 29, 0, 31, 0, 30, 0, 0, 0, 2, 0, 32, 0, 33, 0, 6, 0, 7, 0, 5, 0, 6, 0, 34, 0, 6, 0, 33, 0, 35, 0, 9, 0, 11, 0, 36, 0, 15, 0, 13, 0, 37, 0, 13, 0, 14, 0, 38, 0, 14, 0, 15, 0, 39, 0, 16, 0, 17, 0, 40, 0, 19, 0, 21, 0, 41, 0, 25, 0, 27, 0, 42, 0, 29, 0, 30, 0, 43, 0 ),
+"blend_shape_data": [  ],
+"format": 97539,
+"index_count": 60,
+"material": ExtResource( 2 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 44
+}
+
 [node name="Mossberg 500" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.54608 )
 
@@ -103,3 +129,195 @@ material/0 = null
 [node name="Mossberg 500_4" type="MeshInstance" parent="."]
 mesh = SubResource( 5 )
 material/0 = null
+
+[node name="Pellet M" type="CPUParticles" parent="."]
+transform = Transform( -0.245, -1.1932e-13, -2.14186e-08, 1.15911e-14, -0.49, -4.01052e-08, -2.14186e-08, -2.00555e-08, 0.245001, -0.008, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet M" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -2.00347e-15, -9.07044e-16, 0, -0.0871558, -0.996195, -3.08365e-22, 0.996194, -0.0871559, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet M/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet U" type="CPUParticles" parent="."]
+transform = Transform( -0.245, -1.04022e-13, -2.14185e-08, 2.70006e-09, -0.488135, -0.0308859, -2.13371e-08, -0.0295254, 0.244069, -0.00799999, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet U" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -1.74513e-07, 7.6194e-09, -7.61939e-09, -0.0871557, -0.996195, 1.74513e-07, 0.996194, -0.0871558, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet U/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet D" type="CPUParticles" parent="."]
+transform = Transform( -0.245, 2.96435e-08, -2.69397e-09, -3.09805e-08, -0.490458, 0.0445723, -2.78825e-16, 0.0205097, 0.243511, -0.00799999, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet D" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13815e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet D/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet DL" type="CPUParticles" parent="."]
+transform = Transform( -0.140526, -0.0192007, -0.227969, -1.53152e-08, -0.490458, 0.0445724, -0.175606, 0.0117639, 0.139672, -0.00799996, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet DL" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet DL/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet DR" type="CPUParticles" parent="."]
+transform = Transform( -0.103541, 0.0212435, 0.252225, -4.83124e-08, -0.490458, 0.0445723, 0.19429, 0.00866776, 0.102912, -0.00799996, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet DR" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet DR/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet R" type="CPUParticles" parent="."]
+transform = Transform( -0.244068, -0.0337433, -2.25938e-08, 0.0270251, -0.488135, -3.76731e-08, -2.08398e-08, -2.00156e-08, 0.245001, -0.00799996, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet R" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet R/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet L" type="CPUParticles" parent="."]
+transform = Transform( -0.244068, 0.0337433, -2.00804e-08, -0.0270251, -0.488135, -4.23984e-08, -2.19975e-08, -2.00156e-08, 0.245001, -0.00799996, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet L" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet L/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet UR" type="CPUParticles" parent="."]
+transform = Transform( -0.200692, -0.0193544, 0.159991, -8.26864e-09, -0.488135, -0.0308859, 0.12296, -0.0241858, 0.199929, -0.00799996, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet UR" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -1.74366e-07, 9.13816e-09, -9.13816e-09, -0.104528, -0.994522, 1.74366e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet UR/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Pellet UR2" type="CPUParticles" parent="."]
+transform = Transform( -0.187681, 0.0216897, -0.179296, 1.49925e-08, -0.488135, -0.030886, -0.137797, -0.0226178, 0.186967, -0.00799996, 4.50966, 0.101408 )
+visible = false
+amount = 400
+lifetime = 4.5
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 7 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet UR2" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -1.79231e-07, 5.79129e-09, -7.33461e-09, -0.104528, -0.994522, 1.78377e-07, 0.994521, -0.104528, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet UR2/RayCast"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Mossberg 500_2002" parent="." instance=ExtResource( 6 )]
+mesh = SubResource( 8 )

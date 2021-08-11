@@ -1,5 +1,40 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://texture/scene.gltf" type="PackedScene" id=1]
 
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+params_depth_draw_mode = 1
+albedo_color = Color( 0.917647, 0.682353, 0.682353, 0.0156863 )
+
+[sub_resource type="SphereMesh" id=3]
+material = SubResource( 2 )
+radial_segments = 4
+rings = 1
+
 [node name="Assualt Rifle" instance=ExtResource( 1 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+
+[node name="Laser" type="RayCast" parent="." index="1"]
+transform = Transform( -6.01032e-07, 0, 10, 0, 10, 0, -6.25, 0, -1.09279e-07, 5.49, 1.5, -0.0499995 )
+cast_to = Vector3( 0, 2, 100 )
+
+[node name="Pellet M" type="CPUParticles" parent="." index="2"]
+transform = Transform( 1.07093e-08, -0.343, -3.8783e-08, 0.35, 2.14188e-08, 1.5299e-08, -1.07093e-08, -3.50485e-08, 0.245001, 4, 2.47143, 1.19209e-07 )
+amount = 400
+lifetime = 9.0
+speed_scale = 16.0
+explosiveness = 0.05
+mesh = SubResource( 3 )
+spread = 90.0
+
+[node name="RayCast" type="RayCast" parent="Pellet M" index="0" groups=[
+"RaycastGun",
+]]
+transform = Transform( 0.999999, -2.00347e-15, -9.07044e-16, 0, -0.0871558, -0.996195, -3.08365e-22, 0.996194, -0.0871559, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 10, 100 )
+
+[node name="GunTimer" type="Timer" parent="Pellet M/RayCast" index="0"]
+wait_time = 0.1
+one_shot = true

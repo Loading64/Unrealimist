@@ -15,12 +15,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Godottest"
-run/main_scene="res://CSGVer of test level.tscn"
+run/main_scene="res://LVL1.tscn"
 config/icon="res://icon.png"
 
 [global]
 
 print=false
+csg=false
 
 [input]
 

@@ -2,10 +2,11 @@ extends KinematicBody
 const MAX_CAM_SHAKE = 0.3
 var wall_normal
 var player_health = 80
-var ammo
-var Assualt_rifle_magazine_ammo = 30
-var Assualt_rifle_ammo_capacity = 150
-var damage = 10
+var ammo_pickup
+var magazine_ammo = 30
+var ammo_capacity = 150
+var damage = 25
+var spread = 15
 var standing = false
 var speed = 1
 var standing_speed = 10
@@ -32,6 +33,10 @@ var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
 var crouching = false
+onready var assualt_rifle = preload("res://Assualt Rifle.tscn")
+onready var shotgun = preload("res://Mossberg 500.tscn")
+onready var revolver = preload("res://revolver.tscn")
+onready var Raycastnode = (RayCast)
 onready var dashtimer = $DashTimer
 onready var statetimer = $StateTimer
 onready var timer = $Timer
@@ -39,20 +44,23 @@ onready var pcap = $CollisionShape
 onready var head = $Head
 onready var wall_check = $wallcheck
 onready var ground_check = $GroundCheck
+onready var ray_container = $"Head/HandLoc/Mossberg 500/RayContainer"
 onready var hand = $Head/Hand
 onready var handloc = $Head/HandLoc
 onready var anim_player = $AnimationPlayer
 onready var camera = $Head/Camera 
-onready var GunTimer = $Head/HandLoc/RayCast/GunTimer
-onready var gunraycast = $Head/HandLoc/RayCast
 enum weapon_state {MELEE,REVOLVER,SHOTGUN,RIFLE,EXPLOSIVE,LONG_RANGE}
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING, DASHING}
 var weapon = weapon_state.MELEE
 var player_state = state.STANDING
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
+	for r in ray_container.get_children():
+		r.cast_to.x = rand_range(spread, -spread)
+		r.cast_to.y = rand_range(spread, -spread)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+
 func _wallrun():
 	if Input.is_action_pressed("jump"):
 		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
@@ -63,10 +71,7 @@ func _wallrun():
 				double_jump = 1
 				air_acceleration = 1
 				#direction = -wall_normal.normal * speed
-
 func _input(event):
-		
-		
 	if event is InputEventMouseMotion and is_on_floor():
 		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
@@ -75,49 +80,40 @@ func _input(event):
 		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-360), deg2rad(360))
+
 # warning-ignore:unused_argument
 func update_weapon():
-	$"Head/HandLoc/revolver".visible = false
-	$"Head/HandLoc/Assualt Rifle".visible = false
-	$"Head/HandLoc/Mossberg 500".visible = false
 	match(weapon):
-		
 		weapon_state.MELEE:
 			print("Melee equipped")
 			damage = 300
-			gunraycast.cast_to = Vector3(0,0,60)
 		weapon_state.REVOLVER:
-			gunraycast.transform = $"Head/HandLoc/revolver/Position3D".transform
-			gunraycast.cast_to = Vector3(0,0,1000)
 			print("Revolver equipped")
 			damage = 200
-			$"Head/HandLoc/revolver".visible = true
-			GunTimer.wait_time = 0.1
-
 		weapon_state.SHOTGUN:
-			gunraycast.transform = $"Head/HandLoc/Mossberg 500/Position3D".transform
-			gunraycast.cast_to = Vector3(0,10,100)
-			gunraycast.force_raycast_update()
 			print("Shotgun equipped")
 			damage = 150
-			GunTimer.wait_time = 1.2
-			$"Head/HandLoc/Mossberg 500".visible = true
+			shotgun.visible()
 		weapon_state.RIFLE:
-			gunraycast.transform = $"Head/HandLoc/Assualt Rifle/Position3D".transform
-			gunraycast.cast_to = Vector3(0,50,1000)
-			gunraycast.force_raycast_update() 
 			print("Rifle equipped")
 			damage = 20
-			GunTimer.wait_time = 0.04
-			$"Head/HandLoc/Assualt Rifle".visible = true
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
-			GunTimer.wait_time = 1
 		weapon_state.LONG_RANGE:
 			print("Long Range equipped")
 			damage = 200
-			GunTimer.wait_time = 3
+			
+func _fire_shotgun():
+	if Input.is_action_just_pressed("Primary_fire"):
+		print("firing")
+		for r in ray_container.get_children():
+			r.cast_to.x = rand_range(spread,-spread)
+			r.cast_to.y = rand_range(spread,-spread)
+			if r.is_colliding():
+				if r.get_collider().is_in_group("Enemy"):
+					r.get_collider().enemy_health -= damage
+					print("SGHIT")
 
 func _inventory():
 	var changed = false 
@@ -139,33 +135,22 @@ func _inventory():
 	if Input.is_action_just_pressed("Long_Range_Select"):
 		weapon = weapon_state.LONG_RANGE
 		changed = true
-	
 	if changed:
 		update_weapon()
-		
+#Displays the animation and sets up the rays for the selected weapon to fire.
 func _fire():
-	if Input.is_action_pressed("Primary_fire"):
-		if not anim_player.is_playing():
-			camera.translation = lerp(camera.translation, 
-					Vector3(rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 
-					rand_range(MAX_CAM_SHAKE, -MAX_CAM_SHAKE), 0), 0.05)
-			print("firing")
-			if gunraycast.is_visible_in_tree():
-				if gunraycast.is_colliding():
-					var target = gunraycast.get_collider()
-					if target.is_in_group("Enemy"):
-						print("hit enemy")
-						target.enemy_health -= damage
-		anim_player.play("AssualtFire")
-	else:
-		camera.translation = Vector3()
-		anim_player.stop()
+	if weapon_state.SHOTGUN:
+		_fire_shotgun()
+
+#IN PROGRESS DOESNT WORK 
+#Bullet fire and hit detection.
+
+#Individual frame basis for weapon firing and inventory.
 func _process(delta):
 	_fire()
 	_inventory()
-	
+#This is for functioned called every frame/ and movement code.
 func _physics_process(delta):
-
 	_wallrun()
 	direction = Vector3()
 	full_contact = ground_check.is_colliding()
@@ -194,6 +179,7 @@ func _physics_process(delta):
 		air_acceleration = 30
 		timer.start()
 
+#Basic Movement Code
 	if Input.is_action_pressed("move_forward"):
 		direction -= transform.basis.z
 	elif Input.is_action_pressed("move_backward"):
@@ -202,23 +188,18 @@ func _physics_process(delta):
 		direction -= transform.basis.x
 	elif Input.is_action_pressed("move_right"):
 		direction += transform.basis.x
-		
 	if Input.is_action_pressed("Dash"):
 		player_state = state.DASHING
-		
 	elif Input.is_action_pressed("Sprint"):
 		player_state = state.SPRINTING
-
 	elif Input.is_action_pressed("Sliding"):# and !Input.is_action_pressed("Sprint"):
 		pcap.shape.height -= transition_speed
 		player_state = state.CROUCHING
-
 	else:
 		player_state = state.STANDING
 		pcap.shape.height += transition_speed * delta
-
+# This is for making the sliding code work.
 	pcap.shape.height = clamp(pcap.shape.height, crouching_height, default_height)
-	
 	if Input.is_action_pressed("Sliding") and Input.is_action_pressed("Sprint"):
 		pcap.shape.height -= transition_speed
 		player_state = state.SLIDING
@@ -226,7 +207,7 @@ func _physics_process(delta):
 #		player_state = state.STANDING
 #		pcap.shape.height += transition_speed * delta * 2
 	pcap.shape.height = clamp(pcap.shape.height, sliding_height, default_height)
-	
+	#This Controls the player states and matches them up.
 	match(player_state):
 		
 		state.DASHING:
@@ -234,8 +215,7 @@ func _physics_process(delta):
 			h_acceleration = 200
 			air_acceleration = 200
 			dashtimer.start()
-			
-		
+
 		state.SPRINTING:
 
 			#print("sprinting")
