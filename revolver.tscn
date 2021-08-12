@@ -1,35 +1,5 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://RevolverModel/revolver.fbx" type="PackedScene" id=1]
 
-[sub_resource type="SpatialMaterial" id=1]
-flags_transparent = true
-params_depth_draw_mode = 1
-albedo_color = Color( 0.917647, 0.682353, 0.682353, 0.0156863 )
-
-[sub_resource type="SphereMesh" id=2]
-material = SubResource( 1 )
-radial_segments = 4
-rings = 1
-
 [node name="revolver" instance=ExtResource( 1 )]
-
-[node name="Pellet M" type="CPUParticles" parent="." index="1"]
-transform = Transform( 1.07093e-08, -0.312345, -3.60726e-08, 0.384351, 2.14188e-08, 2.01539e-08, -1.18863e-08, -3.85565e-08, 0.245001, -0.008, 3.8, 0.101 )
-amount = 400
-lifetime = 4.5
-speed_scale = 16.0
-explosiveness = 0.05
-mesh = SubResource( 2 )
-spread = 90.0
-
-[node name="RayCast" type="RayCast" parent="Pellet M" index="0" groups=[
-"RaycastGun",
-]]
-transform = Transform( 0.999999, -2.00347e-15, -9.07044e-16, 0, -0.0871558, -0.996195, -3.08365e-22, 0.996194, -0.0871559, 0, 0, 0 )
-enabled = true
-cast_to = Vector3( 0, 100, 1000 )
-
-[node name="GunTimer" type="Timer" parent="Pellet M/RayCast" index="0"]
-wait_time = 0.1
-one_shot = true

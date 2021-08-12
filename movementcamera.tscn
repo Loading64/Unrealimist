@@ -1,12 +1,31 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
 [ext_resource path="res://Mossberg 500.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assualt Rifle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://revolver.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ShotgunForeend.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SGMODEL/Material_003.material" type="Material" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.5
+
+[sub_resource type="ArrayMesh" id=8]
+resource_name = "Mossberg 500_2001"
+surfaces/0 = {
+"aabb": AABB( -0.18606, 1.09524, -0.35769, 0.37212, 1.83169, 0.42969 ),
+"array_data": PoolByteArray( 0, 0, 0, 0, 168, 82, 59, 64, 37, 35, 183, 190, 63, 0, 147, 0, 0, 0, 0, 0, 168, 82, 59, 64, 37, 35, 183, 190, 63, 0, 147, 0, 131, 134, 62, 62, 211, 48, 140, 63, 100, 35, 128, 190, 63, 0, 147, 0, 131, 134, 62, 62, 211, 48, 140, 63, 100, 35, 128, 190, 63, 0, 147, 0, 0, 0, 0, 0, 211, 48, 140, 63, 37, 35, 183, 190, 63, 0, 147, 0, 131, 134, 62, 62, 211, 48, 140, 63, 100, 35, 128, 190, 0, 129, 0, 0, 0, 0, 0, 0, 211, 48, 140, 63, 188, 116, 147, 61, 0, 129, 0, 0, 0, 0, 0, 0, 211, 48, 140, 63, 37, 35, 183, 190, 0, 129, 0, 0, 131, 134, 62, 190, 168, 82, 59, 64, 100, 35, 128, 190, 193, 0, 147, 0, 131, 134, 62, 190, 168, 82, 59, 64, 100, 35, 128, 190, 193, 0, 147, 0, 0, 0, 0, 0, 211, 48, 140, 63, 37, 35, 183, 190, 193, 0, 147, 0, 0, 0, 0, 0, 211, 48, 140, 63, 37, 35, 183, 190, 193, 0, 147, 0, 131, 134, 62, 190, 211, 48, 140, 63, 100, 35, 128, 190, 193, 0, 147, 0, 0, 0, 0, 0, 168, 82, 59, 64, 37, 35, 183, 190, 0, 127, 0, 0, 131, 134, 62, 190, 168, 82, 59, 64, 12, 31, 17, 189, 0, 127, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 12, 31, 17, 189, 0, 127, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 100, 35, 128, 190, 127, 0, 0, 0, 131, 134, 62, 62, 211, 48, 140, 63, 12, 31, 17, 189, 127, 0, 0, 0, 131, 134, 62, 62, 211, 48, 140, 63, 100, 35, 128, 190, 127, 0, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 12, 31, 17, 189, 63, 0, 109, 0, 131, 134, 62, 62, 168, 82, 59, 64, 12, 31, 17, 189, 63, 0, 109, 0, 0, 0, 0, 0, 211, 48, 140, 63, 188, 116, 147, 61, 63, 0, 109, 0, 0, 0, 0, 0, 211, 48, 140, 63, 188, 116, 147, 61, 63, 0, 109, 0, 131, 134, 62, 62, 211, 48, 140, 63, 12, 31, 17, 189, 63, 0, 109, 0, 0, 0, 0, 0, 168, 82, 59, 64, 188, 116, 147, 61, 193, 0, 109, 0, 0, 0, 0, 0, 168, 82, 59, 64, 188, 116, 147, 61, 193, 0, 109, 0, 131, 134, 62, 190, 211, 48, 140, 63, 12, 31, 17, 189, 193, 0, 109, 0, 131, 134, 62, 190, 211, 48, 140, 63, 12, 31, 17, 189, 193, 0, 109, 0, 0, 0, 0, 0, 211, 48, 140, 63, 188, 116, 147, 61, 193, 0, 109, 0, 131, 134, 62, 190, 168, 82, 59, 64, 12, 31, 17, 189, 129, 0, 0, 0, 131, 134, 62, 190, 211, 48, 140, 63, 100, 35, 128, 190, 129, 0, 0, 0, 131, 134, 62, 190, 211, 48, 140, 63, 12, 31, 17, 189, 129, 0, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 100, 35, 128, 190, 63, 0, 147, 0, 131, 134, 62, 190, 211, 48, 140, 63, 100, 35, 128, 190, 0, 129, 0, 0, 131, 134, 62, 62, 211, 48, 140, 63, 12, 31, 17, 189, 0, 129, 0, 0, 131, 134, 62, 190, 211, 48, 140, 63, 12, 31, 17, 189, 0, 129, 0, 0, 0, 0, 0, 0, 168, 82, 59, 64, 37, 35, 183, 190, 193, 0, 147, 0, 131, 134, 62, 62, 168, 82, 59, 64, 100, 35, 128, 190, 0, 127, 0, 0, 131, 134, 62, 190, 168, 82, 59, 64, 100, 35, 128, 190, 0, 127, 0, 0, 0, 0, 0, 0, 168, 82, 59, 64, 188, 116, 147, 61, 0, 127, 0, 0, 131, 134, 62, 62, 168, 82, 59, 64, 12, 31, 17, 189, 127, 0, 0, 0, 0, 0, 0, 0, 168, 82, 59, 64, 188, 116, 147, 61, 63, 0, 109, 0, 131, 134, 62, 190, 168, 82, 59, 64, 12, 31, 17, 189, 193, 0, 109, 0, 131, 134, 62, 190, 168, 82, 59, 64, 100, 35, 128, 190, 129, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 1, 0, 4, 0, 3, 0, 5, 0, 7, 0, 6, 0, 8, 0, 12, 0, 10, 0, 13, 0, 15, 0, 14, 0, 16, 0, 18, 0, 17, 0, 20, 0, 23, 0, 22, 0, 24, 0, 28, 0, 26, 0, 29, 0, 31, 0, 30, 0, 0, 0, 2, 0, 32, 0, 33, 0, 6, 0, 7, 0, 5, 0, 6, 0, 34, 0, 6, 0, 33, 0, 35, 0, 9, 0, 11, 0, 36, 0, 15, 0, 13, 0, 37, 0, 13, 0, 14, 0, 38, 0, 14, 0, 15, 0, 39, 0, 16, 0, 17, 0, 40, 0, 19, 0, 21, 0, 41, 0, 25, 0, 27, 0, 42, 0, 29, 0, 30, 0, 43, 0 ),
+"blend_shape_data": [  ],
+"format": 97539,
+"index_count": 60,
+"material": ExtResource( 7 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 44
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.04
@@ -34,7 +53,46 @@ length = 0.45
 step = 0.05
 
 [sub_resource type="Animation" id=5]
-length = 1.2
+length = 0.7
+step = 0.05
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Head/HandLoc/Mossberg 500")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("Head/HandLoc/Mossberg 500/Mossberg 500_2003")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.5, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.6, 1, 0, -1.03537, 0, -1.77636e-15, 0, 0, 1, 1, 1, 1, 0.65, 1, 0, 0, 0, -5.32907e-15, 0, 0, 1, 1, 1, 1 )
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/HandLoc/Mossberg 500:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 0.594603, 0.535887, 1.23114, 1.7411, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 1, 0 ), Vector3( -50.485, 1, 0 ), Vector3( -34.992, 1, 0 ), Vector3( -50.485, 1, 0 ), Vector3( -90, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Head/HandLoc/Mossberg 500:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.1
@@ -91,47 +149,71 @@ sway_down = Vector3( -0.1, 0, 0 )
 sway_left = Vector3( 0, 0.1, 0 )
 sway_right = Vector3( 0, -0.1, 0 )
 
+[node name="revolver" parent="Head/HandLoc" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-09, 0, 0.07, 0, 0.07, 0, -0.1, 0, -3.0598e-09, 0, -0.142857, -0.6 )
+visible = false
+
 [node name="Mossberg 500" parent="Head/HandLoc" instance=ExtResource( 3 )]
-transform = Transform( 0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, -0.1, 0.142857, -0.0539199 )
+transform = Transform( 0.0999848, -0.00168562, -8.16057e-11, 0, -4.22181e-09, 0.106972, -0.00174524, -0.0965689, -4.67519e-09, -0.15, 0.143, -0.054 )
 visible = false
 
 [node name="RayContainer" type="Spatial" parent="Head/HandLoc/Mossberg 500"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 7.5, -4.9 )
 
 [node name="RayCast" type="RayCast" parent="Head/HandLoc/Mossberg 500/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
 enabled = true
 cast_to = Vector3( 0, 0, -150 )
 
 [node name="RayCast2" type="RayCast" parent="Head/HandLoc/Mossberg 500/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
 enabled = true
 cast_to = Vector3( 0, 0, -150 )
 
 [node name="RayCast3" type="RayCast" parent="Head/HandLoc/Mossberg 500/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
 enabled = true
 cast_to = Vector3( 0, 0, -150 )
 
 [node name="RayCast4" type="RayCast" parent="Head/HandLoc/Mossberg 500/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
 enabled = true
 cast_to = Vector3( 0, 0, -150 )
 
 [node name="RayCast5" type="RayCast" parent="Head/HandLoc/Mossberg 500/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
 enabled = true
 cast_to = Vector3( 0, 0, -150 )
 
 [node name="RayCast6" type="RayCast" parent="Head/HandLoc/Mossberg 500/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
 enabled = true
 cast_to = Vector3( 0, 0, -150 )
 
 [node name="RayCast7" type="RayCast" parent="Head/HandLoc/Mossberg 500/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -1.06581e-14, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565696, 5.00944, 2.73157 )
 enabled = true
 cast_to = Vector3( 0, 0, -150 )
+
+[node name="Mossberg 500_2003" parent="Head/HandLoc/Mossberg 500" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 1.06581e-14, 0, -1.06581e-14, 1, 0, 0, 0 )
+mesh = SubResource( 8 )
+
+[node name="Assualt Rifle" parent="Head/HandLoc" instance=ExtResource( 4 )]
+transform = Transform( -3.0598e-09, 0, 0.07, 0, 0.07, 0, -0.07, 0, -3.0598e-09, -5.96046e-08, 0, 0 )
+visible = false
+
+[node name="RayContainerRifle" type="Spatial" parent="Head/HandLoc/Assualt Rifle"]
+transform = Transform( 1, 0, -6.35275e-22, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10, 4.6, -4.9 )
+
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/Assualt Rifle/RayContainerRifle"]
+transform = Transform( -4.37114e-08, -7.43094e-08, -0.7, 1.87334e-08, 1, -7.43094e-08, 1.42857, 1.87335e-08, -4.37114e-08, -0.0565701, 5.00944, 2.73158 )
+enabled = true
+cast_to = Vector3( 0, 0, -1500 )
+
+[node name="Laser2" type="RayCast" parent="Head/HandLoc/Assualt Rifle"]
+transform = Transform( -6.01032e-07, -5.68434e-14, 10, 6.25, -4.37114e-07, 1.09279e-07, 2.73196e-07, 10, -1.98952e-13, 1.407, 0.148018, 1.60944 )
+cast_to = Vector3( 0, 2, 100 )
 
 [node name="Hand" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, -0.769, -1.121 )

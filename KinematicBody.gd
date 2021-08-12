@@ -44,7 +44,8 @@ onready var pcap = $CollisionShape
 onready var head = $Head
 onready var wall_check = $wallcheck
 onready var ground_check = $GroundCheck
-onready var ray_container = $"Head/HandLoc/Mossberg 500/RayContainer"
+onready var Shotgunray_container = $"Head/HandLoc/Mossberg 500/RayContainer"
+onready var rifleray_container = $"Head/HandLoc/Assualt Rifle/RayContainerRifle"
 onready var hand = $Head/Hand
 onready var handloc = $Head/HandLoc
 onready var anim_player = $AnimationPlayer
@@ -56,7 +57,7 @@ var player_state = state.STANDING
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	for r in ray_container.get_children():
+	for r in Shotgunray_container.get_children():
 		r.cast_to.x = rand_range(spread, -spread)
 		r.cast_to.y = rand_range(spread, -spread)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -83,6 +84,9 @@ func _input(event):
 
 # warning-ignore:unused_argument
 func update_weapon():
+	$"Head/HandLoc/Mossberg 500".visible = false
+	$"Head/HandLoc/revolver".visible = false
+	$"Head/HandLoc/Assualt Rifle".visible = false
 	match(weapon):
 		weapon_state.MELEE:
 			print("Melee equipped")
@@ -90,13 +94,15 @@ func update_weapon():
 		weapon_state.REVOLVER:
 			print("Revolver equipped")
 			damage = 200
+			$Head/HandLoc/revolver.visible = true
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
 			damage = 150
-			shotgun.visible()
+			$"Head/HandLoc/Mossberg 500".visible = true
 		weapon_state.RIFLE:
 			print("Rifle equipped")
 			damage = 20
+			$"Head/HandLoc/Assualt Rifle".visible = true
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
@@ -105,16 +111,23 @@ func update_weapon():
 			damage = 200
 			
 func _fire_shotgun():
-	if Input.is_action_just_pressed("Primary_fire"):
-		print("firing")
-		for r in ray_container.get_children():
-			r.cast_to.x = rand_range(spread,-spread)
-			r.cast_to.y = rand_range(spread,-spread)
-			if r.is_colliding():
-				if r.get_collider().is_in_group("Enemy"):
-					r.get_collider().enemy_health -= damage
-					print("SGHIT")
-
+	if Input.is_action_just_pressed("Primary_fire") and weapon_state.SHOTGUN:
+		if not anim_player.is_playing():
+			for r in Shotgunray_container.get_children():
+				r.cast_to.x = rand_range(spread,-spread)
+				r.cast_to.y = rand_range(spread,-spread)
+				if r.is_colliding():
+					if r.get_collider().is_in_group("Enemy"):
+						r.get_collider().enemy_health -= damage
+						print("SGHIT")
+			anim_player.play("ShotgunFire")
+func _fire_rifle():
+	if Input.is_action_pressed("Primary_fire"):
+		if not anim_player.is_playing():
+			if $"Head/HandLoc/Assualt Rifle/RayContainerRifle/RayCast".get_collider().is_in_group("Enemy"):
+				$"Head/HandLoc/Assualt Rifle/RayContainerRifle/RayCast".get_collider().enemy_health -= damage
+				print("riflehit")
+					
 func _inventory():
 	var changed = false 
 	if Input.is_action_just_pressed("Shotgun_Select"):
@@ -139,8 +152,11 @@ func _inventory():
 		update_weapon()
 #Displays the animation and sets up the rays for the selected weapon to fire.
 func _fire():
-	if weapon_state.SHOTGUN:
+	print(weapon)
+	if weapon == weapon_state.SHOTGUN:
 		_fire_shotgun()
+	elif weapon == weapon_state.RIFLE:
+		_fire_rifle()
 
 #IN PROGRESS DOESNT WORK 
 #Bullet fire and hit detection.
