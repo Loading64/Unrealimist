@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/revolver.fbx-25cc6eb2c048380928849266f776b8fd.scn"
+path="res://.import/Mas38.gltf-3e752c2077aa53fbb84628a333b08527.scn"
 
 [deps]
 
-source_file="res://RevolverModel/revolver.fbx"
-dest_files=[ "res://.import/revolver.fbx-25cc6eb2c048380928849266f776b8fd.scn" ]
+source_file="res://AssualtrifleModel/Mas38.gltf"
+dest_files=[ "res://.import/Mas38.gltf-3e752c2077aa53fbb84628a333b08527.scn" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Shotgun Improved.gltf-e37da9c1681959a7854839cc4181cc28.scn"
+path="res://.import/LAR.gltf-6e0d623132d36414a44a17d3b274a860.scn"
 
 [deps]
 
-source_file="res://SGMODEL/Shotgun Improved.gltf"
-dest_files=[ "res://.import/Shotgun Improved.gltf-e37da9c1681959a7854839cc4181cc28.scn" ]
+source_file="res://LongrangeModel/LAR.gltf"
+dest_files=[ "res://.import/LAR.gltf-6e0d623132d36414a44a17d3b274a860.scn" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/scene.gltf-73dba06c5a1f610eb1133b919b67be8d.scn"
+path="res://.import/stolzersondoubledeuce.gltf-9f96833d664413c47302bf245fcfbca4.scn"
 
 [deps]
 
-source_file="res://SGMODEL/scene.gltf"
-dest_files=[ "res://.import/scene.gltf-73dba06c5a1f610eb1133b919b67be8d.scn" ]
+source_file="res://SGMODEL/stolzersondoubledeuce.gltf"
+dest_files=[ "res://.import/stolzersondoubledeuce.gltf-9f96833d664413c47302bf245fcfbca4.scn" ]
 
 [params]
 

@@ -1,9 +1,12 @@
 extends KinematicBody
 const MAX_CAM_SHAKE = 0.3
 var wall_normal
+var revolver_max_cylinder = 6
+var reload = 0
 var player_health = 80
 var ammo_pickup
-var magazine_ammo = 30
+var magazine_ammo = 2
+var revolver_cylinder = 6
 var ammo_capacity = 150
 var damage = 25
 var spread = 15
@@ -33,9 +36,10 @@ var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
 var crouching = false
-onready var assualt_rifle = preload("res://Assualt Rifle.tscn")
-onready var shotgun = preload("res://Mossberg 500.tscn")
-onready var revolver = preload("res://revolver.tscn")
+onready var assualt_rifle = preload("res://Mas38.tscn")
+onready var shotgun = preload("res://stolzersondoubledeuce.tscn")
+onready var revolver = preload("res://Revolver2.tscn")
+onready var Longrangerifle = preload("res://LAR.tscn")
 onready var Raycastnode = (RayCast)
 onready var dashtimer = $DashTimer
 onready var statetimer = $StateTimer
@@ -44,8 +48,9 @@ onready var pcap = $CollisionShape
 onready var head = $Head
 onready var wall_check = $wallcheck
 onready var ground_check = $GroundCheck
-onready var Shotgunray_container = $"Head/HandLoc/Mossberg 500/RayContainer"
-onready var rifleray_container = $"Head/HandLoc/Assualt Rifle/RayContainerRifle"
+onready var Shotgunray_container = $"Head/HandLoc/stolzersondoubledeuce/RayContainer"
+onready var rifleray_container = $"Head/HandLoc/Mas38/RayContainerRifle"
+onready var revolverray_container = $Head/HandLoc/Revolver/RayContainerRevolver
 onready var hand = $Head/Hand
 onready var handloc = $Head/HandLoc
 onready var anim_player = $AnimationPlayer
@@ -84,9 +89,10 @@ func _input(event):
 
 # warning-ignore:unused_argument
 func update_weapon():
-	$"Head/HandLoc/Mossberg 500".visible = false
-	$"Head/HandLoc/revolver".visible = false
-	$"Head/HandLoc/Assualt Rifle".visible = false
+	$"Head/HandLoc/stolzersondoubledeuce".visible = false
+	$"Head/HandLoc/Revolver".visible = false
+	$"Head/HandLoc/Mas38".visible = false
+	$"Head/HandLoc/LAR".visible = false
 	match(weapon):
 		weapon_state.MELEE:
 			print("Melee equipped")
@@ -94,24 +100,26 @@ func update_weapon():
 		weapon_state.REVOLVER:
 			print("Revolver equipped")
 			damage = 200
-			$Head/HandLoc/revolver.visible = true
+			$Head/HandLoc/Revolver.visible = true
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
-			damage = 150
-			$"Head/HandLoc/Mossberg 500".visible = true
+			damage = 30
+			$"Head/HandLoc/stolzersondoubledeuce".visible = true
+			spread = 76
 		weapon_state.RIFLE:
 			print("Rifle equipped")
-			damage = 20
-			$"Head/HandLoc/Assualt Rifle".visible = true
+			damage = 50
+			$"Head/HandLoc/Mas38".visible = true
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
 		weapon_state.LONG_RANGE:
 			print("Long Range equipped")
-			damage = 200
+			damage = 500
+			$"Head/HandLoc/LAR".visible = true
 			
 func _fire_shotgun():
-	if Input.is_action_just_pressed("Primary_fire") and weapon_state.SHOTGUN:
+	if Input.is_action_just_pressed("Primary_fire"):
 		if not anim_player.is_playing():
 			for r in Shotgunray_container.get_children():
 				r.cast_to.x = rand_range(spread,-spread)
@@ -121,13 +129,45 @@ func _fire_shotgun():
 						r.get_collider().enemy_health -= damage
 						print("SGHIT")
 			anim_player.play("ShotgunFire")
+			magazine_ammo -= 1
 func _fire_rifle():
 	if Input.is_action_pressed("Primary_fire"):
 		if not anim_player.is_playing():
-			if $"Head/HandLoc/Assualt Rifle/RayContainerRifle/RayCast".get_collider().is_in_group("Enemy"):
-				$"Head/HandLoc/Assualt Rifle/RayContainerRifle/RayCast".get_collider().enemy_health -= damage
-				print("riflehit")
-					
+			for r in rifleray_container.get_children():
+				r.cast_to.x = rand_range(spread,-spread)
+				r.cast_to.y = rand_range(spread,-spread)
+				if r.is_colliding():
+					if r.get_collider().is_in_group("Enemy"):
+						r.get_collider().enemy_health -= damage
+						print("Assualthit")
+			anim_player.play("AssualtFire")
+			magazine_ammo -= 1
+func _fire_revolver():
+	if Input.is_action_pressed("Primary_fire") and revolver_cylinder >= 1:
+		if not anim_player.is_playing():
+			for r in revolverray_container.get_children():
+				r.cast_to.x = rand_range(spread,-spread)
+				r.cast_to.y = rand_range(spread,-spread)
+				if r.is_colliding():
+					if r.get_collider().is_in_group("Enemy"):
+						r.get_collider().enemy_health -= damage
+						print("RevolverHit")
+			anim_player.play("Revolver Fire")
+			revolver_cylinder -= 1
+func _reload_shotgun():
+	if Input.is_action_just_pressed("Reload"):
+		if not anim_player.is_playing():
+			anim_player.play("Shotgun reload")
+func _reload_rifle():
+	if Input.is_action_just_pressed("Reload"):
+		if not anim_player.is_playing():
+			anim_player.play("Rifle reload")
+func _reload_revolver():
+	if Input.is_action_just_pressed("Reload"):
+		if not anim_player.is_playing():
+			anim_player.play("Revolver reload")
+			revolver_cylinder = revolver_max_cylinder
+
 func _inventory():
 	var changed = false 
 	if Input.is_action_just_pressed("Shotgun_Select"):
@@ -152,17 +192,26 @@ func _inventory():
 		update_weapon()
 #Displays the animation and sets up the rays for the selected weapon to fire.
 func _fire():
-	print(weapon)
-	if weapon == weapon_state.SHOTGUN:
-		_fire_shotgun()
-	elif weapon == weapon_state.RIFLE:
-		_fire_rifle()
-
-#IN PROGRESS DOESNT WORK 
-#Bullet fire and hit detection.
+	match(weapon):
+		weapon_state.SHOTGUN:
+			_fire_shotgun()
+		weapon_state.RIFLE:
+			_fire_rifle()
+		weapon_state.REVOLVER:
+			_fire_revolver()
+#Displays the animation and Reloads weapon.
+func _reload():
+	match(weapon):
+		weapon_state.SHOTGUN:
+			_reload_shotgun()
+		weapon_state.RIFLE:
+			_reload_rifle()
+		weapon_state.REVOLVER:
+			_reload_revolver()
 
 #Individual frame basis for weapon firing and inventory.
 func _process(delta):
+	_reload()
 	_fire()
 	_inventory()
 #This is for functioned called every frame/ and movement code.

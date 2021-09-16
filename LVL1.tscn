@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://movementcamera.tscn" type="PackedScene" id=1]
-[ext_resource path="res://UI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://DarkGreyGridTexture.tres" type="Material" id=3]
 [ext_resource path="res://Badguy.tscn" type="PackedScene" id=4]
 
@@ -107,8 +106,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5 )
 [node name="Timer" type="Timer" parent="KinematicBody"]
 wait_time = 0.1
 one_shot = true
-
-[node name="Control" parent="KinematicBody" instance=ExtResource( 2 )]
 
 [node name="Badguy" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8078, 9.71354, -139.832 )
