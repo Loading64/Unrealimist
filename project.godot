@@ -122,6 +122,7 @@ common/physics_fps=240
 [rendering]
 
 quality/driver/driver_name="GLES2"
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 quality/filters/msaa=1
 quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"

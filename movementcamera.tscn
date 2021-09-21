@@ -1,67 +1,15 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
 [ext_resource path="res://Mas38.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Revolver2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://stolzersondoubledeuce.tscn" type="PackedScene" id=5]
+[ext_resource path="res://doublebarrelshotgun.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LAR.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.5
-
-[sub_resource type="CapsuleShape" id=10]
-radius = 0.0
-height = 0.0
-
-[sub_resource type="CapsuleShape" id=11]
-radius = 0.213645
-height = 1.70916
-
-[sub_resource type="CapsuleShape" id=12]
-radius = 0.0461515
-height = 0.369212
-
-[sub_resource type="CapsuleShape" id=13]
-radius = 0.0461515
-height = 0.369212
-
-[sub_resource type="CapsuleShape" id=14]
-radius = 0.0206092
-height = 0.164873
-
-[sub_resource type="CapsuleShape" id=15]
-radius = 0.0206092
-height = 0.164873
-
-[sub_resource type="CapsuleShape" id=16]
-radius = 0.04244
-height = 0.33952
-
-[sub_resource type="CapsuleShape" id=17]
-radius = 0.412638
-height = 3.3011
-
-[sub_resource type="CapsuleShape" id=18]
-radius = 0.077586
-height = 0.620688
-
-[sub_resource type="CapsuleShape" id=19]
-radius = 0.018802
-height = 0.150416
-
-[sub_resource type="CapsuleShape" id=20]
-radius = 0.0775865
-height = 0.620692
-
-[sub_resource type="CapsuleShape" id=21]
-radius = 0.018802
-height = 0.150416
-
-[sub_resource type="CapsuleShape" id=22]
-radius = 0.0201506
-height = 0.161205
 
 [sub_resource type="Animation" id=2]
 resource_name = "Assualt Reload"
@@ -189,294 +137,44 @@ transform = Transform( -4.37114e-08, -7.43094e-08, -0.7, 1.87334e-08, 1, -7.4309
 enabled = true
 cast_to = Vector3( 0, 0, -2500 )
 
-[node name="stolzersondoubledeuce" parent="Head/HandLoc" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, -0.2, 0, 0 )
+[node name="doublebarrelshotgun" parent="Head/HandLoc" instance=ExtResource( 5 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.1, 0.142857, 0 )
 
-[node name="RootNode" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx" index="0"]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0 )
+[node name="Cube001" parent="Head/HandLoc/doublebarrelshotgun" index="5"]
+transform = Transform( 0.2, 0, 0, 0, 0.0503237, 0.39691, 0, -0.0062114, 1.57569, 0, 0.29, -0.82 )
 
-[node name="Mesh2" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="1"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
+[node name="RayContainerShotgun" type="Spatial" parent="Head/HandLoc/doublebarrelshotgun"]
+transform = Transform( 0.01, 0, 0, 0, -0.00564511, 8.52389e-10, 0, -1.50996e-09, -0.01, -0.0915867, 0.396953, -2.56163 )
 
-[node name="Mesh3" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="2"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh4" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="3"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh5" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="4"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh6" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="5"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh7" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="6"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh8" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="7"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh9" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="8"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh10" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="9"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh11" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="10"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Mesh12" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="11"]
-transform = Transform( 1, 2.68648e-16, 0, -3.28406e-15, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Physical Bone _rootJoint" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="12"]
-transform = Transform( 1, 2.68659e-16, 0, 3.82135e-15, 1, -1.98952e-13, 2.13163e-14, 1.98952e-13, 1, 0, 0, 0 )
-body_offset = Transform( 1, 2.68655e-16, 0, 3.82135e-15, 1, -1.7053e-13, 2.13163e-14, 1.7053e-13, 1, 0, 0, 0 )
-bone_name = "_rootJoint"
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone _rootJoint" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 10 )
-
-[node name="Physical Bone body_00" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="13"]
-transform = Transform( 1, 0, 1.38943e-15, 1.80322e-14, -1.19209e-07, -1, 4.9738e-14, 1, -1.19209e-07, 0, 1.06822, 0 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48422e-15, 1.21443e-13, 1.06823 )
-body_offset = Transform( 1, -7.10543e-15, 1.38943e-15, 4.26326e-14, 1, -1.13687e-13, -1.99268e-14, 1.13687e-13, 1, 0, 0, -1.06823 )
-bone_name = "body_00"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone body_00" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 11 )
-
-[node name="Physical Bone HammerR_01" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="14"]
-transform = Transform( 3.57628e-07, -0.998148, 0.0608316, 1, 3.20574e-07, -1.78593e-07, 1.49012e-07, 0.0608316, 0.998148, -0.132314, -0.261335, -2.34744 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, -3.8104e-06, 0.23076 )
-body_offset = Transform( 1, -2.99316e-13, -4.26326e-14, -1.01252e-13, 1, -1.86265e-08, 1.56319e-13, -1.11759e-08, 1, 2.98023e-08, 3.8147e-06, -0.23076 )
-bone_name = "HammerR_01"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone HammerR_01" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 12 )
-
-[node name="Physical Bone HammerL_02" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="15"]
-transform = Transform( 3.57628e-07, -0.998148, 0.0608316, 1, 3.20574e-07, -1.78593e-07, 1.49012e-07, 0.0608316, 0.998148, -0.132314, 0.265986, -2.34744 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, -3.8104e-06, 0.230759 )
-body_offset = Transform( 1, -2.99316e-13, -4.26326e-14, -1.01252e-13, 1, -1.86265e-08, 1.56319e-13, -1.11759e-08, 1, -2.98023e-08, 3.8147e-06, -0.230759 )
-bone_name = "HammerL_02"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone HammerL_02" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 13 )
-
-[node name="Physical Bone SafetyL_03" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="16"]
-transform = Transform( 0.0134029, -0.235482, 0.971787, 0.998382, 0.0568706, 1.10582e-05, -0.0552687, 0.970214, 0.235863, -0.140703, 0.211769, -2.44752 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98215e-07, -9.56745e-07, 0.103045 )
-body_offset = Transform( 1, -1.86265e-08, -1.86265e-09, -1.11759e-08, 1, 2.98023e-08, 1.86265e-09, -2.98023e-08, 1, -2.98023e-07, 9.53674e-07, -0.103045 )
-bone_name = "SafetyL_03"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone SafetyL_03" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 14 )
-
-[node name="Physical Bone SafetyR_04" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="17"]
-transform = Transform( -0.0119811, -0.235481, 0.971805, 0.99871, -0.050768, 1.10528e-05, 0.049334, 0.970552, 0.235786, -0.140704, -0.213986, -2.44755 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19785e-07, 9.53674e-07, 0.103045 )
-body_offset = Transform( 1, -7.45058e-09, -5.58794e-09, 3.72529e-09, 1, 0, 0, -1.49012e-08, 1, -1.19209e-07, -9.53674e-07, -0.103045 )
-bone_name = "SafetyR_04"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone SafetyR_04" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 15 )
-
-[node name="Physical Bone unlock_05" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="18"]
-transform = Transform( 3.57628e-07, -1.50996e-07, -1, 1, 1.19209e-07, 4.76837e-07, 1.19209e-07, -1, 1.50996e-07, 0.454513, 3.12924e-07, -1.02129 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36213e-14, -1.05544e-14, 0.2122 )
-body_offset = Transform( 1, 8.52651e-14, -2.99817e-13, -7.10543e-14, 1, 4.9738e-14, -1.57709e-13, 2.84217e-14, 1, 0, 0, -0.2122 )
-bone_name = "unlock_05"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone unlock_05" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 16 )
-
-[node name="Physical Bone breakaction_06" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="19"]
-transform = Transform( 1, -3.14508e-07, 7.60895e-08, 7.60895e-08, 1.00908e-07, -1, 3.14508e-07, 1, 1.00909e-07, 0.0907621, 2.06319, -0.622847 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.68397e-14, 3.51836e-13, 2.06319 )
-body_offset = Transform( 1, -1.42109e-13, 4.209e-14, -2.84217e-14, 1, -1.7053e-13, 2.07739e-14, 2.27374e-13, 1, 0, 0, -2.06319 )
-bone_name = "breakaction_06"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone breakaction_06" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 17 )
-
-[node name="Physical Bone casingL_07" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="20"]
-transform = Transform( 3.1933e-07, 7.47327e-08, 0.693665, 0.693665, 6.99967e-08, -3.1933e-07, -6.99966e-08, 0.693665, -7.47327e-08, -0.173647, 0.00694524, -4.74922 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2154e-08, -5.92923e-21, 0.387927 )
-body_offset = Transform( 1, 8.52651e-14, 7.0601e-14, 1.13687e-13, 1, 0, 1.37575e-14, 1.06581e-14, 1, -5.21541e-08, 0, -0.387927 )
-bone_name = "casingL_07"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone casingL_07" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 18 )
-
-[node name="Physical Bone BulletL_08" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="21"]
-transform = Transform( 2.89419e-07, 2.06057e-13, 0.693665, 0.693665, 6.99966e-08, -2.8942e-07, -6.99965e-08, 0.693665, -2.02505e-13, 0.0302343, 0.00694517, -4.21103 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45058e-09, 2.00391e-15, 0.0940084 )
-body_offset = Transform( 1, 2.84217e-14, 5.30465e-14, 5.68434e-14, 1, -2.13163e-14, -8.90621e-14, -1.42109e-14, 1, -7.45058e-09, 0, -0.0940084 )
-bone_name = "BulletL_08"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone BulletL_08" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 19 )
-
-[node name="Physical Bone casingR_09" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="22"]
-transform = Transform( 3.1933e-07, 7.47326e-08, 0.693665, 0.693665, 6.99967e-08, -3.1933e-07, -6.99966e-08, 0.693665, -7.47326e-08, 0.357277, 0.00694538, -5.15138 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45055e-09, -5.51284e-15, 0.387932 )
-body_offset = Transform( 1, 1.13687e-13, 7.06009e-14, 1.42109e-13, 1, 1.42109e-14, 1.37575e-14, 7.10543e-15, 1, -7.45058e-09, 0, -0.387932 )
-bone_name = "casingR_09"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone casingR_09" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 20 )
-
-[node name="Physical Bone BulletR_010" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="23"]
-transform = Transform( 4.54802e-07, 7.53175e-13, 0.693665, 0.693665, 6.99969e-08, -4.54802e-07, -6.99967e-08, 0.693665, -7.8515e-13, 0.559305, 0.00694529, -4.6132 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49012e-08, 2.00395e-15, 0.0940103 )
-body_offset = Transform( 1, 5.68434e-14, -3.22184e-14, 1.42109e-13, 1, -2.13163e-14, -8.90618e-14, -4.26326e-14, 1, -1.49012e-08, 0, -0.0940104 )
-bone_name = "BulletR_010"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone BulletR_010" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 21 )
-
-[node name="Physical Bone extractor_011" type="PhysicalBone" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton" index="24"]
-transform = Transform( 4.60353e-07, 1.29187e-07, 1, 1, 1.00908e-07, -4.60352e-07, -1.00909e-07, 1, -1.29187e-07, -0.325719, 6.25849e-07, -1.62289 )
-joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47035e-08, -3.22154e-15, 0.100754 )
-body_offset = Transform( 1, -2.84217e-14, 7.9755e-14, 2.84217e-14, 1, 3.19744e-14, 1.93442e-13, 1.77636e-14, 1, 4.47035e-08, 0, -0.100754 )
-bone_name = "extractor_011"
-joint_constraints/bias = 0.3
-joint_constraints/damping = 1.0
-joint_constraints/impulse_clamp = 0.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Head/HandLoc/stolzersondoubledeuce/RootNode (gltf orientation matrix)/RootNode (model correction matrix)/fea6bea56a9c47fcac91e1c70390b94efbx/RootNode/Armature/Node4/Skeleton/Physical Bone extractor_011" index="0"]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
-shape = SubResource( 22 )
-
-[node name="RayContainer" type="Spatial" parent="Head/HandLoc/stolzersondoubledeuce"]
-transform = Transform( 0.0174524, 4.54028e-09, -0.965689, 0, 1.06972, -4.54086e-09, 0.999848, -7.92487e-11, 0.0168562, 7.783, -5, 0.374 )
-
-[node name="RayCast" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -8.88178e-16, 0, -8.88178e-16, 1, -0.0565697, 5.00944, 2.73157 )
+[node name="RayCast" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -1.42857, 0, -6.11959e-08, 0, 1, 0, 1.2489e-07, 0, -0.7, -10.404, 5.009, -0.5 )
 enabled = true
-cast_to = Vector3( 5, 0, -750 )
+cast_to = Vector3( 0, 0, -2500 )
 
-[node name="RayCast2" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -8.88178e-16, 0, -8.88178e-16, 1, -0.0565697, 5.00944, 2.73157 )
+[node name="RayCast2" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -0.999999, -8.74228e-08, 6.1196e-08, -8.74228e-08, 1, -8.74228e-08, -1.2489e-07, -8.74227e-08, -0.999999, -10.054, 10.018, -15.3628 )
 enabled = true
-cast_to = Vector3( 5, 0, -750 )
+cast_to = Vector3( 0, 0, -2500 )
 
-[node name="RayCast3" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -8.88178e-16, 0, -8.88178e-16, 1, -0.0565697, 5.00944, 2.73157 )
+[node name="RayCast3" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -1.42857, 0, -6.11959e-08, 0, 1, 0, 1.24889e-07, 0, -0.699999, 0.349991, 15.027, -14.8628 )
 enabled = true
-cast_to = Vector3( 5, 0, -750 )
+cast_to = Vector3( 0, 0, -2500 )
 
-[node name="RayCast4" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -8.88178e-16, 0, -8.88178e-16, 1, -0.0565697, 5.00944, 2.73157 )
+[node name="RayCast4" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( 0.999998, -9.13837e-14, -1.22392e-07, -5.49382e-14, 1, -9.23706e-14, 2.49779e-07, -7.4607e-14, 0.999998, -1.04904e-05, 20.036, -1.71661e-05 )
 enabled = true
-cast_to = Vector3( 5, 0, -750 )
+cast_to = Vector3( 0, 0, -2500 )
 
-[node name="RayCast5" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -8.88178e-16, 0, -8.88178e-16, 1, -0.0565697, 5.00944, 2.73157 )
+[node name="RayCast5" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -1.42857, 0, -6.11958e-08, 0, 1, 0, 1.24889e-07, 0, -0.699999, -10.404, 25.045, -0.500019 )
 enabled = true
-cast_to = Vector3( 5, 0, -750 )
+cast_to = Vector3( 0, 0, -2500 )
 
-[node name="RayCast6" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -8.88178e-16, 0, -8.88178e-16, 1, -0.0565697, 5.00944, 2.73157 )
+[node name="RayCast6" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -0.999997, -8.74228e-08, 1.83588e-07, -8.74227e-08, 1, -8.74227e-08, -3.74668e-07, -8.74226e-08, -0.999997, -10.054, 30.054, -15.3628 )
 enabled = true
-cast_to = Vector3( 5, 0, -750 )
-
-[node name="RayCast7" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, 0, 1, -8.88178e-16, 0, -8.88178e-16, 1, -0.0565697, 5.00944, 2.73157 )
-enabled = true
-cast_to = Vector3( 5, 0, -750 )
-
-[node name="RayCast8" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, -2.08167e-17, 1, -8.88178e-16, -3.72529e-09, -8.88178e-16, 1, -0.730467, 5.00944, 2.71939 )
-enabled = true
-cast_to = Vector3( 0, 0, -750 )
-
-[node name="RayCast9" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, -2.08167e-17, 1, -8.88178e-16, -3.72529e-09, -8.88178e-16, 1, -0.730467, 5.00944, 2.71939 )
-enabled = true
-cast_to = Vector3( 0, 0, -750 )
-
-[node name="RayCast10" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, -2.08167e-17, 1, -8.88178e-16, -3.72529e-09, -8.88178e-16, 1, -0.730467, 5.00944, 2.71939 )
-enabled = true
-cast_to = Vector3( 0, 0, -750 )
-
-[node name="RayCast11" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, -2.08167e-17, 1, -8.88178e-16, -3.72529e-09, -8.88178e-16, 1, -0.730467, 5.00944, 2.71939 )
-enabled = true
-cast_to = Vector3( 0, 0, -750 )
-
-[node name="RayCast12" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, -2.08167e-17, 1, -8.88178e-16, -3.72529e-09, -8.88178e-16, 1, -0.730467, 5.00944, 2.71939 )
-enabled = true
-cast_to = Vector3( 0, 0, -750 )
-
-[node name="RayCast13" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, -2.08167e-17, 1, -8.88178e-16, -3.72529e-09, -8.88178e-16, 1, -0.730467, 5.00944, 2.71939 )
-enabled = true
-cast_to = Vector3( 0, 0, -750 )
-
-[node name="RayCast14" type="RayCast" parent="Head/HandLoc/stolzersondoubledeuce/RayContainer"]
-transform = Transform( 1, 0, 0, -2.08167e-17, 1, -8.88178e-16, -3.72529e-09, -8.88178e-16, 1, -0.730467, 5.00944, 2.71939 )
-enabled = true
-cast_to = Vector3( 0, 0, -750 )
+cast_to = Vector3( 0, 0, -2500 )
 
 [node name="Hand" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, -0.769, -1.121 )
@@ -514,4 +212,4 @@ one_shot = true
 [editable path="Head/HandLoc/LAR"]
 [editable path="Head/HandLoc/Mas38"]
 [editable path="Head/HandLoc/Revolver"]
-[editable path="Head/HandLoc/stolzersondoubledeuce"]
+[editable path="Head/HandLoc/doublebarrelshotgun"]

@@ -48,7 +48,7 @@ onready var pcap = $CollisionShape
 onready var head = $Head
 onready var wall_check = $wallcheck
 onready var ground_check = $GroundCheck
-onready var Shotgunray_container = $"Head/HandLoc/stolzersondoubledeuce/RayContainer"
+onready var Shotgunray_container = $"Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"
 onready var rifleray_container = $"Head/HandLoc/Mas38/RayContainerRifle"
 onready var revolverray_container = $Head/HandLoc/Revolver/RayContainerRevolver
 onready var hand = $Head/Hand
@@ -89,7 +89,7 @@ func _input(event):
 
 # warning-ignore:unused_argument
 func update_weapon():
-	$"Head/HandLoc/stolzersondoubledeuce".visible = false
+	$"Head/HandLoc/doublebarrelshotgun".visible = false
 	$"Head/HandLoc/Revolver".visible = false
 	$"Head/HandLoc/Mas38".visible = false
 	$"Head/HandLoc/LAR".visible = false
@@ -104,7 +104,7 @@ func update_weapon():
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
 			damage = 30
-			$"Head/HandLoc/stolzersondoubledeuce".visible = true
+			$"Head/HandLoc/doublebarrelshotgun".visible = true
 			spread = 76
 		weapon_state.RIFLE:
 			print("Rifle equipped")

@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://movementcamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DarkGreyGridTexture.tres" type="Material" id=3]
 [ext_resource path="res://Badguy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ProceduralSky" id=4]
+
+[sub_resource type="Environment" id=3]
+background_mode = 4
+background_sky = SubResource( 4 )
+background_color = Color( 0.482353, 0.423529, 0.423529, 1 )
+background_energy = 5.56
+background_canvas_max_layer = 2
+ambient_light_color = Color( 0.65625, 0.595536, 0.47168, 1 )
+ambient_light_energy = 1.53
+ambient_light_sky_contribution = 0.44
+fog_enabled = true
+fog_sun_color = Color( 1, 0.901961, 0.701961, 1 )
+fog_sun_amount = 0.03
 
 [node name="LVL1" type="Spatial"]
 
@@ -136,5 +151,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1922, 9.71354, -128.832 )
 
 [node name="Badguy10" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1922, 9.71354, -128.832 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
 
 [connection signal="timeout" from="KinematicBody/Timer" to="KinematicBody" method="_on_Timer_timeout"]
