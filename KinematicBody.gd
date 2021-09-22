@@ -105,7 +105,7 @@ func update_weapon():
 			print("Shotgun equipped")
 			damage = 30
 			$"Head/HandLoc/doublebarrelshotgun".visible = true
-			spread = 76
+			spread = 3500
 		weapon_state.RIFLE:
 			print("Rifle equipped")
 			damage = 50

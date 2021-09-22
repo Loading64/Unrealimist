@@ -147,34 +147,74 @@ transform = Transform( 0.2, 0, 0, 0, 0.0503237, 0.39691, 0, -0.0062114, 1.57569,
 transform = Transform( 0.01, 0, 0, 0, -0.00564511, 8.52389e-10, 0, -1.50996e-09, -0.01, -0.0915867, 0.396953, -2.56163 )
 
 [node name="RayCast" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
-transform = Transform( -1.42857, 0, -6.11959e-08, 0, 1, 0, 1.2489e-07, 0, -0.7, -10.404, 5.009, -0.5 )
+transform = Transform( -1.42857, 0, -6.11959e-08, 0, 1, -1.42109e-14, 1.2489e-07, 0, -0.7, -10.404, 20, -16.3275 )
 enabled = true
-cast_to = Vector3( 0, 0, -2500 )
+cast_to = Vector3( 0, 0, -50000 )
 
 [node name="RayCast2" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
-transform = Transform( -0.999999, -8.74228e-08, 6.1196e-08, -8.74228e-08, 1, -8.74228e-08, -1.2489e-07, -8.74227e-08, -0.999999, -10.054, 10.018, -15.3628 )
+transform = Transform( -0.999999, -8.74228e-08, 6.1196e-08, -8.74228e-08, 1, -8.74228e-08, -1.2489e-07, -8.74227e-08, -0.999999, -10.054, 15.4658, -15.3625 )
 enabled = true
-cast_to = Vector3( 0, 0, -2500 )
+cast_to = Vector3( 0, 0, -50000 )
 
 [node name="RayCast3" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
-transform = Transform( -1.42857, 0, -6.11959e-08, 0, 1, 0, 1.24889e-07, 0, -0.699999, 0.349991, 15.027, -14.8628 )
+transform = Transform( -1.42857, 0, -6.11959e-08, 0, 1, 2.13163e-14, 1.24889e-07, 0, -0.699999, 0.349991, 6.97546, -14.8627 )
 enabled = true
-cast_to = Vector3( 0, 0, -2500 )
+cast_to = Vector3( 0, 0, -50000 )
 
 [node name="RayCast4" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
-transform = Transform( 0.999998, -9.13837e-14, -1.22392e-07, -5.49382e-14, 1, -9.23706e-14, 2.49779e-07, -7.4607e-14, 0.999998, -1.04904e-05, 20.036, -1.71661e-05 )
+transform = Transform( -0.999998, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -0.999998, -1.14441e-05, 14.538, -14.191 )
 enabled = true
-cast_to = Vector3( 0, 0, -2500 )
+cast_to = Vector3( 0, 0, -50000 )
 
 [node name="RayCast5" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
-transform = Transform( -1.42857, 0, -6.11958e-08, 0, 1, 0, 1.24889e-07, 0, -0.699999, -10.404, 25.045, -0.500019 )
+transform = Transform( -1.42857, 0, -6.11958e-08, -5.0822e-21, 1, 2.13163e-14, 1.2489e-07, 0, -0.699999, -0.937759, 22.1508, -14.0771 )
 enabled = true
-cast_to = Vector3( 0, 0, -2500 )
+cast_to = Vector3( 0, 0, -50000 )
+
+[node name="RayCast7" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -1.42857, 0, -6.11958e-08, -5.0822e-21, 1, 2.13163e-14, 1.2489e-07, 0, -0.699999, -5.8069, 13.8583, -14.0771 )
+enabled = true
+cast_to = Vector3( 0, 0, -50000 )
 
 [node name="RayCast6" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
-transform = Transform( -0.999997, -8.74228e-08, 1.83588e-07, -8.74227e-08, 1, -8.74227e-08, -3.74668e-07, -8.74226e-08, -0.999997, -10.054, 30.054, -15.3628 )
+transform = Transform( -0.999997, -8.74228e-08, 1.83588e-07, -8.74227e-08, 1, -8.74227e-08, -3.74668e-07, -8.74226e-08, -0.999997, -10.054, 6.49524, -15.3624 )
 enabled = true
-cast_to = Vector3( 0, 0, -2500 )
+cast_to = Vector3( 0, 0, -50000 )
+
+[node name="RayCast8" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -1.42857, 0, -6.11959e-08, 0, 1, -2.13163e-14, 1.2489e-07, 0, -0.7, 15.3726, 20, -16.3275 )
+enabled = true
+cast_to = Vector3( 0, 0, -50000 )
+
+[node name="RayCast9" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -0.999999, -8.74228e-08, 6.1196e-08, -8.74228e-08, 1, -8.74228e-08, -1.2489e-07, -8.74227e-08, -0.999999, 15.7226, 15.4658, -15.3624 )
+enabled = true
+cast_to = Vector3( 0, 0, -50000 )
+
+[node name="RayCast10" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -1.42857, 0, -6.11959e-08, 0, 1, 2.13163e-14, 1.24889e-07, 0, -0.699999, 26.1266, 6.97546, -14.8627 )
+enabled = true
+cast_to = Vector3( 0, 0, -50000 )
+
+[node name="RayCast11" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -0.999998, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -0.999998, 25.7766, 14.538, -14.191 )
+enabled = true
+cast_to = Vector3( 0, 0, -50000 )
+
+[node name="RayCast12" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -1.42857, 0, -6.11958e-08, -5.0822e-21, 1, 2.13163e-14, 1.2489e-07, 0, -0.699999, 24.8389, 22.1508, -14.0771 )
+enabled = true
+cast_to = Vector3( 0, 0, -50000 )
+
+[node name="RayCast13" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -1.42857, 0, -6.11958e-08, -5.0822e-21, 1, 2.13163e-14, 1.2489e-07, 0, -0.699999, 19.9697, 13.8583, -14.0771 )
+enabled = true
+cast_to = Vector3( 0, 0, -50000 )
+
+[node name="RayCast14" type="RayCast" parent="Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"]
+transform = Transform( -0.999997, -8.74228e-08, 1.83588e-07, -8.74227e-08, 1, -8.74227e-08, -3.74668e-07, -8.74226e-08, -0.999997, 15.7226, 6.49524, -15.3624 )
+enabled = true
+cast_to = Vector3( 0, 0, -50000 )
 
 [node name="Hand" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, -0.769, -1.121 )

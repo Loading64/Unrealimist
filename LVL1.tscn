@@ -4,11 +4,11 @@
 [ext_resource path="res://DarkGreyGridTexture.tres" type="Material" id=3]
 [ext_resource path="res://Badguy.tscn" type="PackedScene" id=4]
 
-[sub_resource type="ProceduralSky" id=4]
+[sub_resource type="ProceduralSky" id=1]
 
-[sub_resource type="Environment" id=3]
+[sub_resource type="Environment" id=2]
 background_mode = 4
-background_sky = SubResource( 4 )
+background_sky = SubResource( 1 )
 background_color = Color( 0.482353, 0.423529, 0.423529, 1 )
 background_energy = 5.56
 background_canvas_max_layer = 2
@@ -51,6 +51,13 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 4.2, 13.1 )
 width = 24.0
 height = 24.0
 depth = 24.0
+material = ExtResource( 3 )
+
+[node name="BIG CUBE6" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 9.93737, 0.6 )
+width = 24.0
+height = 4.0
+depth = 36.0
 material = ExtResource( 3 )
 
 [node name="BIG CUBE5" type="CSGBox" parent="CSGCombiner"]
@@ -153,6 +160,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1922, 9.71354, -128.832 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1922, 9.71354, -128.832 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 3 )
+environment = SubResource( 2 )
 
 [connection signal="timeout" from="KinematicBody/Timer" to="KinematicBody" method="_on_Timer_timeout"]
