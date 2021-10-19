@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://movementcamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DarkGreyGridTexture.tres" type="Material" id=2]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
+background_sky_custom_fov = 40.8
+background_color = Color( 0.439216, 0.564706, 0.564706, 1 )
+background_energy = 3.64
+ambient_light_color = Color( 0.839216, 0.843137, 0.713726, 1 )
+ambient_light_energy = 0.7
+ambient_light_sky_contribution = 0.19
+fog_enabled = true
+fog_color = Color( 0.435294, 0.435294, 0.435294, 1 )
+fog_sun_color = Color( 0.988235, 0.898039, 0.439216, 1 )
+fog_sun_amount = 0.16
+fog_depth_enabled = false
+fog_depth_begin = 0.0
+fog_depth_end = 0.0
+fog_depth_curve = 0.659755
+fog_transmit_curve = 1.36604
+fog_height_enabled = true
+fog_height_max = 25.0
+fog_height_curve = 0.535886
+dof_blur_far_distance = 312.32
+glow_enabled = true
+glow_intensity = 1.24
+glow_bloom = 0.1
+glow_bicubic_upscale = true
+adjustment_enabled = true
+
+[node name="Spatial" type="Spatial"]
+
+[node name="KinematicBody" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 0.7, 0, 1, 0, -4.37114e-08, 0, 129.436, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="CSGBox3" type="CSGBox" parent="."]
+transform = Transform( -3.40949e-08, 0, 11, 0, 36.38, 0, -0.78, 0, -4.80825e-07, -2.01604, 74.5025, 8.34527 )
+use_collision = true
+width = 11.0
+height = 4.0
+depth = 1.6
+material = ExtResource( 2 )
+
+[node name="CSGBox4" type="CSGBox" parent="."]
+transform = Transform( 0.78, 0, 0, 0, 36.38, 0, 0, 0, 11, -11.016, 74.5025, 1.34527 )
+use_collision = true
+width = 11.0
+height = 4.0
+depth = 1.6
+material = ExtResource( 2 )
+
+[node name="CSGBox6" type="CSGBox" parent="."]
+transform = Transform( -3.40949e-08, 0, 11, 0, 36.38, 0, -0.78, 0, -4.80825e-07, -2.01604, 74.5025, -7.65473 )
+use_collision = true
+width = 11.0
+height = 4.0
+depth = 1.6
+material = ExtResource( 2 )
+
+[node name="CSGBox7" type="CSGBox" parent="."]
+transform = Transform( 0.78, 0, 0, 0, 36.38, 0, 0, 0, 11, 7.98396, 110.503, 0.345274 )
+use_collision = true
+width = 11.0
+height = 4.0
+depth = 1.6
+material = ExtResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.584, 0.902537, 0.0452733 )
+use_collision = true
+width = 58.0
+height = 4.0
+depth = 11.0
+material = ExtResource( 2 )
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41604, 149.903, 0.0452733 )
+use_collision = true
+width = 24.0
+height = 0.002
+depth = 22.0
+material = ExtResource( 2 )

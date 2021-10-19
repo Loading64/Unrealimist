@@ -67,6 +67,7 @@ func _ready():
 		r.cast_to.y = rand_range(spread, -spread)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+#
 func _wallrun():
 	if Input.is_action_pressed("jump"):
 		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
@@ -101,6 +102,7 @@ func update_weapon():
 			print("Revolver equipped")
 			damage = 200
 			$Head/HandLoc/Revolver.visible = true
+			spread = 20
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
 			damage = 30
@@ -110,6 +112,7 @@ func update_weapon():
 			print("Rifle equipped")
 			damage = 50
 			$"Head/HandLoc/Mas38".visible = true
+			spread = 50
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
@@ -142,6 +145,7 @@ func _fire_rifle():
 						print("Assualthit")
 			anim_player.play("AssualtFire")
 			magazine_ammo -= 1
+			
 func _fire_revolver():
 	if Input.is_action_pressed("Primary_fire") and revolver_cylinder >= 1:
 		if not anim_player.is_playing():
@@ -154,6 +158,7 @@ func _fire_revolver():
 						print("RevolverHit")
 			anim_player.play("Revolver Fire")
 			revolver_cylinder -= 1
+			
 func _reload_shotgun():
 	if Input.is_action_just_pressed("Reload"):
 		if not anim_player.is_playing():
