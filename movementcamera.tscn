@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://KinematicBody.gd" type="Script" id=1]
 [ext_resource path="res://Hand.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Revolver2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://doublebarrelshotgun.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LAR.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -139,6 +140,7 @@ cast_to = Vector3( 0, 0, -2500 )
 
 [node name="doublebarrelshotgun" parent="Head/HandLoc" instance=ExtResource( 5 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.1, 0.142857, 0 )
+visible = false
 
 [node name="Cube001" parent="Head/HandLoc/doublebarrelshotgun" index="5"]
 transform = Transform( 0.2, 0, 0, 0, 0.0503237, 0.39691, 0, -0.0062114, 1.57569, 0, 0.29, -0.82 )
@@ -245,6 +247,8 @@ cast_to = Vector3( 2, 0, 0 )
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
 
 [connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]

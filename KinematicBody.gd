@@ -36,6 +36,9 @@ var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
 var crouching = false
+var current_ammo = [48,60,150,10,40]
+var max_ammo = [48,60,150,10,40]
+
 onready var assualt_rifle = preload("res://Mas38.tscn")
 onready var shotgun = preload("res://stolzersondoubledeuce.tscn")
 onready var revolver = preload("res://Revolver2.tscn")
@@ -59,6 +62,7 @@ enum weapon_state {MELEE,REVOLVER,SHOTGUN,RIFLE,EXPLOSIVE,LONG_RANGE}
 enum state  {SPRINTING, CROUCHING, STANDING, SLIDING, SHOOTING, DASHING}
 var weapon = weapon_state.MELEE
 var player_state = state.STANDING
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -98,21 +102,31 @@ func update_weapon():
 		weapon_state.MELEE:
 			print("Melee equipped")
 			damage = 300
+			$"Head/HandLoc/doublebarrelshotgun".visible = false
+			$"Head/HandLoc/Revolver".visible = false
+			$"Head/HandLoc/Mas38".visible = false
+			$"Head/HandLoc/LAR".visible = false
 		weapon_state.REVOLVER:
 			print("Revolver equipped")
 			damage = 200
 			$Head/HandLoc/Revolver.visible = true
 			spread = 20
+			magazine_ammo = current_ammo[0]
+			ammo_capacity = max_ammo[0]
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
 			damage = 30
 			$"Head/HandLoc/doublebarrelshotgun".visible = true
 			spread = 3500
+			magazine_ammo = 2
+			ammo_capacity = 48
 		weapon_state.RIFLE:
 			print("Rifle equipped")
 			damage = 50
 			$"Head/HandLoc/Mas38".visible = true
-			spread = 50
+			spread = 40
+			magazine_ammo = 20
+			ammo_capacity = 60
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
@@ -123,7 +137,7 @@ func update_weapon():
 			
 func _fire_shotgun():
 	if Input.is_action_just_pressed("Primary_fire"):
-		if not anim_player.is_playing():
+		if not anim_player.is_playing() and magazine_ammo != 0:
 			for r in Shotgunray_container.get_children():
 				r.cast_to.x = rand_range(spread,-spread)
 				r.cast_to.y = rand_range(spread,-spread)
@@ -133,8 +147,9 @@ func _fire_shotgun():
 						print("SGHIT")
 			anim_player.play("ShotgunFire")
 			magazine_ammo -= 1
+			ammo_capacity -= 1
 func _fire_rifle():
-	if Input.is_action_pressed("Primary_fire"):
+	if Input.is_action_pressed("Primary_fire") and magazine_ammo != 0:
 		if not anim_player.is_playing():
 			for r in rifleray_container.get_children():
 				r.cast_to.x = rand_range(spread,-spread)
@@ -145,9 +160,9 @@ func _fire_rifle():
 						print("Assualthit")
 			anim_player.play("AssualtFire")
 			magazine_ammo -= 1
-			
+			ammo_capacity -= 1
 func _fire_revolver():
-	if Input.is_action_pressed("Primary_fire") and revolver_cylinder >= 1:
+	if Input.is_action_pressed("Primary_fire") and magazine_ammo != 0:
 		if not anim_player.is_playing():
 			for r in revolverray_container.get_children():
 				r.cast_to.x = rand_range(spread,-spread)
@@ -157,21 +172,26 @@ func _fire_revolver():
 						r.get_collider().enemy_health -= damage
 						print("RevolverHit")
 			anim_player.play("Revolver Fire")
-			revolver_cylinder -= 1
+			magazine_ammo -= 1
+			ammo_capacity -= 1
 			
 func _reload_shotgun():
-	if Input.is_action_just_pressed("Reload"):
+	if Input.is_action_just_pressed("Reload") and ammo_capacity != 0:
 		if not anim_player.is_playing():
-			anim_player.play("Shotgun reload")
+			#anim_player.play("Shotgun reload")
+			magazine_ammo = 2
+			
 func _reload_rifle():
-	if Input.is_action_just_pressed("Reload"):
+	if Input.is_action_just_pressed("Reload") and ammo_capacity != 0:
 		if not anim_player.is_playing():
-			anim_player.play("Rifle reload")
+			#anim_player.play("Rifle reload")
+			magazine_ammo = 30
+			
 func _reload_revolver():
-	if Input.is_action_just_pressed("Reload"):
+	if Input.is_action_just_pressed("Reload") and ammo_capacity != 0:
 		if not anim_player.is_playing():
-			anim_player.play("Revolver reload")
-			revolver_cylinder = revolver_max_cylinder
+			#anim_player.play("Revolver reload")
+			magazine_ammo = 6
 
 func _inventory():
 	var changed = false 
@@ -215,7 +235,7 @@ func _reload():
 			_reload_revolver()
 
 #Individual frame basis for weapon firing and inventory.
-func _process(delta):
+func _process(_delta):
 	_reload()
 	_fire()
 	_inventory()
@@ -247,7 +267,6 @@ func _physics_process(delta):
 		gravity_vec = Vector3.UP * jump
 		double_jump = 0
 		air_acceleration = 30
-		timer.start()
 
 #Basic Movement Code
 	if Input.is_action_pressed("move_forward"):

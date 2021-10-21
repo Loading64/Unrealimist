@@ -12,7 +12,7 @@ ambient_light_color = Color( 0.839216, 0.843137, 0.713726, 1 )
 ambient_light_energy = 0.7
 ambient_light_sky_contribution = 0.19
 fog_enabled = true
-fog_color = Color( 0.435294, 0.435294, 0.435294, 1 )
+fog_color = Color( 0.329412, 0.309804, 0.286275, 1 )
 fog_sun_color = Color( 0.988235, 0.898039, 0.439216, 1 )
 fog_sun_amount = 0.16
 fog_depth_enabled = false
@@ -21,8 +21,9 @@ fog_depth_end = 0.0
 fog_depth_curve = 0.659755
 fog_transmit_curve = 1.36604
 fog_height_enabled = true
-fog_height_max = 25.0
-fog_height_curve = 0.535886
+fog_height_min = 20.0
+fog_height_max = 150.0
+fog_height_curve = 0.435275
 dof_blur_far_distance = 312.32
 glow_enabled = true
 glow_intensity = 1.24
@@ -38,48 +39,68 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 0.7, 0, 1, 0, -4.37114e-08, 0, 12
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
-[node name="CSGBox3" type="CSGBox" parent="."]
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
 transform = Transform( -3.40949e-08, 0, 11, 0, 36.38, 0, -0.78, 0, -4.80825e-07, -2.01604, 74.5025, 8.34527 )
 use_collision = true
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 2.27374e-13, 0, 1, 0, 0, 0, 1, 0, -0.918087, 0 )
+use_collision = true
 width = 11.0
-height = 4.0
+height = 5.0
 depth = 1.6
 material = ExtResource( 2 )
 
-[node name="CSGBox4" type="CSGBox" parent="."]
-transform = Transform( 0.78, 0, 0, 0, 36.38, 0, 0, 0, 11, -11.016, 74.5025, 1.34527 )
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -4.37114e-08, 0, -14.1026, 0, 1, 0, 0.0709091, 0, -4.37114e-08, 8.97436, -0.918087, -0.818178 )
+use_collision = true
+width = 11.0
+height = 5.0
+depth = 1.6
+material = ExtResource( 2 )
+
+[node name="CSGBox6" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 2.27374e-13, 0, 1, 0, 0, 0, 1, 20.5128, -0.918087, 5.96046e-08 )
+use_collision = true
+width = 11.0
+height = 5.0
+depth = 1.6
+material = ExtResource( 2 )
+
+[node name="CSGBox7" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -4.37114e-08, 0, -14.1026, 0, 1, 0, 0.0709091, 0, -4.37114e-08, 10.2564, 0.989568, 0.909091 )
 use_collision = true
 width = 11.0
 height = 4.0
 depth = 1.6
 material = ExtResource( 2 )
 
-[node name="CSGBox6" type="CSGBox" parent="."]
-transform = Transform( -3.40949e-08, 0, 11, 0, 36.38, 0, -0.78, 0, -4.80825e-07, -2.01604, 74.5025, -7.65473 )
-use_collision = true
-width = 11.0
-height = 4.0
-depth = 1.6
-material = ExtResource( 2 )
-
-[node name="CSGBox7" type="CSGBox" parent="."]
-transform = Transform( 0.78, 0, 0, 0, 36.38, 0, 0, 0, 11, 7.98396, 110.503, 0.345274 )
-use_collision = true
-width = 11.0
-height = 4.0
-depth = 1.6
-material = ExtResource( 2 )
-
-[node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.584, 0.902537, 0.0452733 )
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -5.60402e-08, 0, -1.28205, 0, 0.0274876, 0, 0.0909091, 0, -3.97376e-09, 10.641, -2.95767, 1.96364 )
 use_collision = true
 width = 58.0
 height = 4.0
 depth = 11.0
 material = ExtResource( 2 )
 
-[node name="CSGBox2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41604, 149.903, 0.0452733 )
+[node name="CSGBox5" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -5.60401e-08, -1.28205, 5.60402e-08, 7.81245e-16, -1.20152e-09, -0.0274876, 0.0909091, -3.97376e-09, 1.73699e-16, 32.4359, -2.54535, 7.32728 )
+use_collision = true
+width = 54.0
+height = 4.0
+depth = 30.0
+material = ExtResource( 2 )
+
+[node name="CSGBox8" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -5.60401e-08, -1.28205, 5.60402e-08, 7.81245e-16, -1.20152e-09, -0.0274876, 0.0909091, -3.97376e-09, 1.73698e-16, -2.1795, -2.54535, 11.3273 )
+use_collision = true
+width = 54.0
+height = 4.0
+depth = 30.0
+material = ExtResource( 2 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -5.60402e-08, 0, -1.28205, 0, 0.0274876, 0, 0.0909091, 0, -3.97376e-09, 10.641, 2.07258, -0.218182 )
 use_collision = true
 width = 24.0
 height = 0.002

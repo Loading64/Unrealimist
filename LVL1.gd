@@ -20,5 +20,6 @@ func _on_Area_body_entered(body):
 	if body.name == "KinematicBody":
 		print("Change Level")
 		get_tree().change_scene("res://LVL2.tscn")
+		
 	
 	pass # Replace with function body.

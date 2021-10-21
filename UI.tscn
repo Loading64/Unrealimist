@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://RubikMonoOne-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Label.gd" type="Script" id=2]
+[ext_resource path="res://Ammo.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -21,8 +23,8 @@ margin_right = 270.0
 rect_pivot_offset = Vector2( 2857.11, 1474.34 )
 custom_fonts/font = SubResource( 1 )
 text = "20/20"
+script = ExtResource( 3 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -42,6 +44,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -40.0
 margin_top = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 0.064
+anchor_bottom = 0.083
+margin_right = 0.575996
+margin_bottom = 0.255997
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
