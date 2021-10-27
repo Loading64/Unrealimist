@@ -235,7 +235,7 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.1, 11.6, -41 )
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.1, 16.4, -77 )
 
 [node name="lightbutgood3" parent="." instance=ExtResource( 5 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.9, 30.8, -149 )
+transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -0.9, 27.7, -149 )
 
 [connection signal="timeout" from="KinematicBody/Timer" to="KinematicBody" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
