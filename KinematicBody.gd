@@ -41,7 +41,7 @@ var max_ammo = [48,60,150,10,40]
 
 onready var assualt_rifle = preload("res://Mas38.tscn")
 onready var shotgun = preload("res://stolzersondoubledeuce.tscn")
-onready var revolver = preload("res://Revolver2.tscn")
+onready var revolver = preload("res://Revolver.tscn")
 onready var Longrangerifle = preload("res://LAR.tscn")
 onready var Raycastnode = (RayCast)
 onready var dashtimer = $DashTimer

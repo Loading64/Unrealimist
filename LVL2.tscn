@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://movementcamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DarkGreyGridTexture.tres" type="Material" id=2]
+[ext_resource path="res://building.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -83,22 +84,6 @@ height = 4.0
 depth = 11.0
 material = ExtResource( 2 )
 
-[node name="CSGBox5" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -5.60401e-08, -1.28205, 5.60402e-08, 7.81245e-16, -1.20152e-09, -0.0274876, 0.0909091, -3.97376e-09, 1.73699e-16, 32.4359, -2.54535, 7.32728 )
-use_collision = true
-width = 54.0
-height = 4.0
-depth = 30.0
-material = ExtResource( 2 )
-
-[node name="CSGBox8" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -5.60401e-08, -1.28205, 5.60402e-08, 7.81245e-16, -1.20152e-09, -0.0274876, 0.0909091, -3.97376e-09, 1.73698e-16, -2.1795, -2.54535, 11.3273 )
-use_collision = true
-width = 54.0
-height = 4.0
-depth = 30.0
-material = ExtResource( 2 )
-
 [node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( -5.60402e-08, 0, -1.28205, 0, 0.0274876, 0, 0.0909091, 0, -3.97376e-09, 10.641, 2.07258, -0.218182 )
 use_collision = true
@@ -106,3 +91,9 @@ width = 24.0
 height = 0.002
 depth = 22.0
 material = ExtResource( 2 )
+
+[node name="building" parent="." instance=ExtResource( 3 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 72, -36, -38 )
+
+[node name="building2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 153, -36, 20 )

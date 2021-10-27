@@ -126,7 +126,7 @@ transform = Transform( -4.37114e-08, -7.43094e-08, -0.7, 1.87334e-08, 1, -7.4309
 enabled = true
 cast_to = Vector3( 0, 0, -3500 )
 
-[node name="Revolver2" parent="Head/HandLoc" instance=ExtResource( 4 )]
+[node name="Revolver" parent="Head/HandLoc" instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0.0999999, 0, -0.3 )
 
 [node name="doublebarrelshotgun" parent="Head/HandLoc" instance=ExtResource( 5 )]
