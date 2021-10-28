@@ -36,8 +36,19 @@ var gravity_vec = Vector3()
 var sprinting = false
 var sliding = false
 var crouching = false
-var current_ammo = [48,60,150,10,40]
-var max_ammo = [48,60,150,10,40]
+#cant be arsed making it elegant
+
+var ammo_in_weapon_revolver = 6
+var spare_ammo_revolver = 20
+const AMMO_IN_MAG_revolver = 6
+
+var ammo_in_weapon_sg = 2
+var spare_ammo_sg = 10
+const AMMO_IN_MAG_sg = 2
+
+var ammo_in_weapon_rifle = 30
+var spare_ammo_rifle = 150
+const AMMO_IN_MAG_rifle = 30
 
 onready var assualt_rifle = preload("res://Mas38.tscn")
 onready var shotgun = preload("res://stolzersondoubledeuce.tscn")
@@ -111,22 +122,22 @@ func update_weapon():
 			damage = 200
 			$Head/HandLoc/Revolver.visible = true
 			spread = 20
-			magazine_ammo = current_ammo[0]
-			ammo_capacity = max_ammo[0]
+			magazine_ammo = ammo_in_weapon_revolver
+			ammo_capacity = spare_ammo_revolver
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
 			damage = 30
 			$"Head/HandLoc/doublebarrelshotgun".visible = true
 			spread = 3500
-			magazine_ammo = 2
-			ammo_capacity = 48
+			magazine_ammo = ammo_in_weapon_sg
+			ammo_capacity = spare_ammo_sg
 		weapon_state.RIFLE:
 			print("Rifle equipped")
 			damage = 50
 			$"Head/HandLoc/Mas38".visible = true
 			spread = 40
-			magazine_ammo = 20
-			ammo_capacity = 60
+			magazine_ammo = ammo_in_weapon_rifle
+			ammo_capacity = spare_ammo_rifle
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
@@ -137,7 +148,7 @@ func update_weapon():
 			
 func _fire_shotgun():
 	if Input.is_action_just_pressed("Primary_fire"):
-		if not anim_player.is_playing() and magazine_ammo != 0:
+		if not anim_player.is_playing() and ammo_in_weapon_sg != 0:
 			for r in Shotgunray_container.get_children():
 				r.cast_to.x = rand_range(spread,-spread)
 				r.cast_to.y = rand_range(spread,-spread)
@@ -149,7 +160,7 @@ func _fire_shotgun():
 			magazine_ammo -= 1
 			ammo_capacity -= 1
 func _fire_rifle():
-	if Input.is_action_pressed("Primary_fire") and magazine_ammo != 0:
+	if Input.is_action_pressed("Primary_fire") and ammo_in_weapon_rifle != 0:
 		if not anim_player.is_playing():
 			for r in rifleray_container.get_children():
 				r.cast_to.x = rand_range(spread,-spread)
@@ -162,7 +173,7 @@ func _fire_rifle():
 			magazine_ammo -= 1
 			ammo_capacity -= 1
 func _fire_revolver():
-	if Input.is_action_pressed("Primary_fire") and magazine_ammo != 0:
+	if Input.is_action_pressed("Primary_fire") and ammo_in_weapon_revolver != 0:
 		if not anim_player.is_playing():
 			for r in revolverray_container.get_children():
 				r.cast_to.x = rand_range(spread,-spread)
@@ -176,19 +187,19 @@ func _fire_revolver():
 			ammo_capacity -= 1
 			
 func _reload_shotgun():
-	if Input.is_action_just_pressed("Reload") and ammo_capacity != 0:
+	if Input.is_action_just_pressed("Reload") and spare_ammo_sg >= 2:
 		if not anim_player.is_playing():
 			#anim_player.play("Shotgun reload")
 			magazine_ammo = 2
 			
 func _reload_rifle():
-	if Input.is_action_just_pressed("Reload") and ammo_capacity != 0:
+	if Input.is_action_just_pressed("Reload") and spare_ammo_rifle >= 30:
 		if not anim_player.is_playing():
 			#anim_player.play("Rifle reload")
 			magazine_ammo = 30
 			
 func _reload_revolver():
-	if Input.is_action_just_pressed("Reload") and ammo_capacity != 0:
+	if Input.is_action_just_pressed("Reload") and spare_ammo_revolver >= 6:
 		if not anim_player.is_playing():
 			#anim_player.play("Revolver reload")
 			magazine_ammo = 6

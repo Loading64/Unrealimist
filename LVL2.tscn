@@ -97,3 +97,6 @@ transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 72, -36, -38 )
 
 [node name="building2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 153, -36, 20 )
+
+[node name="building3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 225, -36, 20 )
