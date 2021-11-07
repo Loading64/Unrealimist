@@ -366,3 +366,9 @@ func _on_StateTimer_timeout():
 func _on_DashTimer_timeout():
 	player_state = state.STANDING
 	pass # Replace with function body.
+
+
+func _on_Area_body_entered(body):
+	if body.name == "KinematicBody":
+		print("u die lol")
+		get_tree().quit()

@@ -123,6 +123,7 @@ visible = false
 
 [node name="Revolver" parent="Head/HandLoc" instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0.0999999, 0, -0.3 )
+visible = false
 
 [node name="RayContainerRevolver" type="Spatial" parent="Head/HandLoc/Revolver"]
 transform = Transform( 0.700001, 3.55271e-15, 0, 0, -3.0598e-08, -0.7, 0, 0.7, -3.0598e-08, 3.1, 2.5, -4.65 )
