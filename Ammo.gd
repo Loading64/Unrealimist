@@ -1,14 +1,20 @@
 extends Label
-
+var weapon = get_parent().get_parent().weapon
+enum weapon_state {MELEE,REVOLVER,SHOTGUN,RIFLE,EXPLOSIVE,LONG_RANGE}
+var magazine_ammo_display = 0
+var max_ammo_amount = 0
+var now := OS.get_ticks_msec()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 func _process(_delta: float) -> void:
-
-	var magazine_ammo_display = get_parent().get_parent().magazine_ammo
-	var max_ammo_amount = get_parent().get_parent().ammo_capacity
-	var now := OS.get_ticks_msec()
-
+	match(weapon):
+		weapon_state.REVOLVER:
+			magazine_ammo_display = get_parent().get_parent().ammo_in_weapon_revolver
+			max_ammo_amount = get_parent().get_parent().spare_ammo_revolver
+		weapon_state.SHOTGUN:
+			magazine_ammo_display = get_parent().get_parent().ammo_in_weapon_revolver
+			max_ammo_amount = get_parent().get_parent().spare_ammo_revolver
 	# Remove frames older than 1 second in the `ammo` array
 
 

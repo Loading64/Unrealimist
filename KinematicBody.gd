@@ -50,6 +50,7 @@ var ammo_in_weapon_rifle = 30
 var spare_ammo_rifle = 150
 const AMMO_IN_MAG_rifle = 30
 
+
 onready var assualt_rifle = preload("res://Mas38.tscn")
 onready var shotgun = preload("res://stolzersondoubledeuce.tscn")
 onready var revolver = preload("res://Revolver.tscn")
@@ -122,22 +123,22 @@ func update_weapon():
 			damage = 200
 			$Head/HandLoc/Revolver.visible = true
 			spread = 20
-			magazine_ammo = ammo_in_weapon_revolver
-			ammo_capacity = spare_ammo_revolver
+			ammo_in_weapon_revolver = 6
+			spare_ammo_revolver = 12
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
 			damage = 30
 			$"Head/HandLoc/doublebarrelshotgun".visible = true
 			spread = 3500
-			magazine_ammo = ammo_in_weapon_sg
-			ammo_capacity = spare_ammo_sg
+			ammo_in_weapon_sg = 2
+			spare_ammo_sg = 8
 		weapon_state.RIFLE:
 			print("Rifle equipped")
 			damage = 50
 			$"Head/HandLoc/Mas38".visible = true
 			spread = 40
-			magazine_ammo = ammo_in_weapon_rifle
-			ammo_capacity = spare_ammo_rifle
+			ammo_in_weapon_rifle = 20
+			spare_ammo_rifle = 40
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
@@ -157,8 +158,8 @@ func _fire_shotgun():
 						r.get_collider().enemy_health -= damage
 						print("SGHIT")
 			anim_player.play("ShotgunFire")
-			magazine_ammo -= 1
-			ammo_capacity -= 1
+			ammo_in_weapon_sg -= 1
+			spare_ammo_sg -= 1
 func _fire_rifle():
 	if Input.is_action_pressed("Primary_fire") and ammo_in_weapon_rifle != 0:
 		if not anim_player.is_playing():
@@ -170,8 +171,8 @@ func _fire_rifle():
 						r.get_collider().enemy_health -= damage
 						print("Assualthit")
 			anim_player.play("AssualtFire")
-			magazine_ammo -= 1
-			ammo_capacity -= 1
+			ammo_in_weapon_rifle -= 1
+			spare_ammo_rifle -= 1
 func _fire_revolver():
 	if Input.is_action_pressed("Primary_fire") and ammo_in_weapon_revolver != 0:
 		if not anim_player.is_playing():
@@ -183,26 +184,26 @@ func _fire_revolver():
 						r.get_collider().enemy_health -= damage
 						print("RevolverHit")
 			anim_player.play("Revolver Fire")
-			magazine_ammo -= 1
-			ammo_capacity -= 1
+			ammo_in_weapon_revolver -= 1
+			spare_ammo_revolver -= 1
 			
 func _reload_shotgun():
 	if Input.is_action_just_pressed("Reload") and spare_ammo_sg >= 2:
 		if not anim_player.is_playing():
 			#anim_player.play("Shotgun reload")
-			magazine_ammo = 2
+			ammo_in_weapon_sg = 2
 			
 func _reload_rifle():
 	if Input.is_action_just_pressed("Reload") and spare_ammo_rifle >= 30:
 		if not anim_player.is_playing():
 			#anim_player.play("Rifle reload")
-			magazine_ammo = 30
+			ammo_in_weapon_rifle = 30
 			
 func _reload_revolver():
 	if Input.is_action_just_pressed("Reload") and spare_ammo_revolver >= 6:
 		if not anim_player.is_playing():
 			#anim_player.play("Revolver reload")
-			magazine_ammo = 6
+			ammo_in_weapon_revolver = 6
 
 func _inventory():
 	var changed = false 

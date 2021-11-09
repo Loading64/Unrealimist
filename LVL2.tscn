@@ -111,22 +111,69 @@ height = 0.002
 depth = 22.0
 material = ExtResource( 2 )
 
+[node name="CSGBox9" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -0.641026, 1.11029, -8.40604e-08, 0.023805, 0.0137438, 1.04055e-09, 5.96065e-09, -3.44138e-09, -0.090909, -26.4804, -2.32545, 30.0924 )
+use_collision = true
+width = 48.0
+height = 3.28833
+depth = 0.425949
+material = ExtResource( 2 )
+
+[node name="CSGBox10" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -5.60401e-08, 0, -1.28205, 0, 0.0274876, 0, 0.0909091, 0, -3.97376e-09, 10.641, -4.13964, 50.0545 )
+use_collision = true
+width = 58.0
+height = 8.0
+depth = 42.0
+material = ExtResource( 2 )
+
+[node name="CSGBox11" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 0.641026, -1.11029, -2.80199e-08, 0.023805, 0.0137438, 1.04055e-09, -1.98689e-09, -3.44138e-09, 0.090909, 52.9487, -3.50742, 50.0545 )
+use_collision = true
+width = 48.0
+height = 3.28833
+depth = 0.425949
+material = ExtResource( 2 )
+
+[node name="CSGBox12" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -0.641026, 1.11029, -8.40604e-08, 0.023805, 0.0137438, 1.04055e-09, 5.96065e-09, -3.44138e-09, -0.090909, -26.4805, -3.50742, 51.3651 )
+use_collision = true
+width = 48.0
+height = 3.28833
+depth = 0.425949
+material = ExtResource( 2 )
+
 [node name="building" parent="." instance=ExtResource( 3 )]
-transform = Transform( 5, 0, 0, 0, 12, 0, 0, 0, 5, 72, -103, -38 )
+transform = Transform( 3.5, 0, 0, 0, 12, 0, 0, 0, 3.5, 40.65, -103, -27.1932 )
 
 [node name="building2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 5, 0, 0, 0, 12, 0, 0, 0, 5, 153, -103, 20 )
+transform = Transform( 3.5, 0, 0, 0, 12, 0, 0, 0, 3.5, 97.35, -103, 13.4068 )
 
 [node name="building3" parent="." instance=ExtResource( 3 )]
-transform = Transform( 5, 0, 0, 0, 12, 0, 0, 0, 5, 225, -103, 20 )
+transform = Transform( 3.5, 0, 0, 0, 12, 0, 0, 0, 3.5, 147.75, -103, -36.2932 )
 
 [node name="building4" parent="." instance=ExtResource( 3 )]
-transform = Transform( 5, 0, 0, 0, 12, 0, 0, 0, 5, 329, -103, -59 )
+transform = Transform( 3.5, 0, 0, 0, 12, 0, 0, 0, 3.5, 220.55, -103, -41.8932 )
 
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 277.216, -140.712, 0.944443 )
 shape = SubResource( 2 )
+
+[node name="building5" parent="." instance=ExtResource( 3 )]
+transform = Transform( -3.5, 0, -3.0598e-07, 0, 12, 0, 3.0598e-07, 0, -3.5, 210.459, -103, 37.9385 )
+
+[node name="building6" parent="." instance=ExtResource( 3 )]
+transform = Transform( 3.5, 0, 0, 0, 12, 0, 0, 0, 3.5, 384.35, -103, -41.8932 )
+
+[node name="building7" parent="." instance=ExtResource( 3 )]
+transform = Transform( -3.5, 0, -3.0598e-07, 0, 12, 0, 3.0598e-07, 0, -3.5, 374.259, -103, 37.9385 )
+
+[node name="building8" parent="." instance=ExtResource( 3 )]
+transform = Transform( -3.5, 0, -3.0598e-07, 0, 12, 0, 3.0598e-07, 0, -3.5, 277.659, -103, 26.0385 )
+
+[node name="building9" parent="." instance=ExtResource( 3 )]
+transform = Transform( -3.5, 0, -3.0598e-07, 0, 12, 0, 3.0598e-07, 0, -3.5, 304.959, -103, -39.7615 )
 
 [connection signal="body_entered" from="Area" to="KinematicBody" method="_on_Area_body_entered"]
