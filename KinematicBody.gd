@@ -38,16 +38,16 @@ var sliding = false
 var crouching = false
 #cant be arsed making it elegant
 
-var ammo_in_weapon_revolver = 6
-var spare_ammo_revolver = 20
+onready var ammo_in_weapon_revolver = 6
+onready var spare_ammo_revolver = 20
 const AMMO_IN_MAG_revolver = 6
 
-var ammo_in_weapon_sg = 2
-var spare_ammo_sg = 10
+onready var ammo_in_weapon_sg = 2
+onready var spare_ammo_sg = 10
 const AMMO_IN_MAG_sg = 2
 
-var ammo_in_weapon_rifle = 30
-var spare_ammo_rifle = 150
+onready var ammo_in_weapon_rifle = 30
+onready var spare_ammo_rifle = 150
 const AMMO_IN_MAG_rifle = 30
 
 
@@ -61,7 +61,7 @@ onready var statetimer = $StateTimer
 onready var timer = $Timer
 onready var pcap = $CollisionShape
 onready var head = $Head
-onready var wall_check = $wallcheck
+var wall_check
 onready var ground_check = $GroundCheck
 onready var Shotgunray_container = $"Head/HandLoc/doublebarrelshotgun/RayContainerShotgun"
 onready var rifleray_container = $"Head/HandLoc/Mas38/RayContainerRifle"
@@ -83,17 +83,17 @@ func _ready():
 		r.cast_to.y = rand_range(spread, -spread)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-#
+
 func _wallrun():
 	if Input.is_action_pressed("jump"):
 		if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
-			if wall_check.is_colliding():
-				wall_normal = get_slide_collision(0)
+			if $wallcheckleft.is_colliding() or $wallcheckright.is_colliding():
 				gravity_vec = Vector3.ZERO
-				speed = wallrun_speed
+				speed = wallrun_speed 
 				double_jump = 1
 				air_acceleration = 1
 				#direction = -wall_normal.normal * speed
+
 func _input(event):
 	if event is InputEventMouseMotion and is_on_floor():
 		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
@@ -104,7 +104,6 @@ func _input(event):
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-360), deg2rad(360))
 
-# warning-ignore:unused_argument
 func update_weapon():
 	$"Head/HandLoc/doublebarrelshotgun".visible = false
 	$"Head/HandLoc/Revolver".visible = false
@@ -114,31 +113,21 @@ func update_weapon():
 		weapon_state.MELEE:
 			print("Melee equipped")
 			damage = 300
-			$"Head/HandLoc/doublebarrelshotgun".visible = false
-			$"Head/HandLoc/Revolver".visible = false
-			$"Head/HandLoc/Mas38".visible = false
-			$"Head/HandLoc/LAR".visible = false
 		weapon_state.REVOLVER:
 			print("Revolver equipped")
 			damage = 200
 			$Head/HandLoc/Revolver.visible = true
 			spread = 20
-			ammo_in_weapon_revolver = 6
-			spare_ammo_revolver = 12
 		weapon_state.SHOTGUN:
 			print("Shotgun equipped")
 			damage = 30
 			$"Head/HandLoc/doublebarrelshotgun".visible = true
 			spread = 3500
-			ammo_in_weapon_sg = 2
-			spare_ammo_sg = 8
 		weapon_state.RIFLE:
 			print("Rifle equipped")
 			damage = 50
 			$"Head/HandLoc/Mas38".visible = true
 			spread = 40
-			ammo_in_weapon_rifle = 20
-			spare_ammo_rifle = 40
 		weapon_state.EXPLOSIVE:
 			print("Explosive equipped")
 			damage = 70
@@ -251,6 +240,7 @@ func _process(_delta):
 	_reload()
 	_fire()
 	_inventory()
+	
 #This is for functioned called every frame/ and movement code.
 func _physics_process(delta):
 	_wallrun()
@@ -275,9 +265,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or ground_check.is_colliding()):
 		gravity_vec = Vector3.UP * jump
 
-	elif Input.is_action_just_pressed("jump") and double_jump == 1 and (is_on_floor() == false or ground_check.is_colliding() == false): 
+	elif Input.is_action_just_pressed("jump") and double_jump == 1  and (is_on_floor() == false or ground_check.is_colliding() == false): 
 		gravity_vec = Vector3.UP * jump
-		double_jump = 0
+		double_jump -= 1 
 		air_acceleration = 30
 
 #Basic Movement Code
@@ -372,4 +362,10 @@ func _on_DashTimer_timeout():
 func _on_Area_body_entered(body):
 	if body.name == "KinematicBody":
 		print("u die lol")
+		get_tree().quit()
+
+
+func _on_Area2_body_entered(body):
+	if body.name == "KinematicBody":
+		print("U win lol")
 		get_tree().quit()
