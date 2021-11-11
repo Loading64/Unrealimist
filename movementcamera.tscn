@@ -142,6 +142,7 @@ cast_to = Vector3( 0, 0, -3500 )
 
 [node name="doublebarrelshotgun" parent="Head/HandLoc" instance=ExtResource( 5 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.1, 0.142857, 0 )
+visible = false
 
 [node name="Cube001" parent="Head/HandLoc/doublebarrelshotgun" index="5"]
 transform = Transform( 0.2, 0, 0, 0, 0.0503237, 0.39691, 0, -0.0062114, 1.57569, 0, 0.29, -0.82 )

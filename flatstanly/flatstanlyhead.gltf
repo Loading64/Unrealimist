@@ -1,0 +1,111 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Circle",
+            "rotation" : [
+                0,
+                0,
+                -0.7071068286895752,
+                0.7071068286895752
+            ],
+            "translation" : [
+                0,
+                4,
+                0
+            ]
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Circle.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 32,
+            "max" : [
+                1,
+                0,
+                1
+            ],
+            "min" : [
+                -1,
+                0,
+                -1
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 32,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 32,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 90,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 384,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 384,
+            "byteOffset" : 384
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 256,
+            "byteOffset" : 768
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 180,
+            "byteOffset" : 1024
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 1204,
+            "uri" : "data:application/octet-stream;base64,AAAAAAAAAAAAAIC/wsVHvgAAAAC+FHu/Fu/DvgAAAABeg2y/2jkOvwAAAAAx21S/8wQ1vwAAAADzBDW/MdtUvwAAAADaOQ6/XoNsvwAAAAAV78O+vhR7vwAAAADExUe+AACAvwAAAAAuvTszvhR7vwAAAADCxUc+X4NsvwAAAAAU78M+MttUvwAAAADZOQ4/8wQ1vwAAAADzBDU/2TkOvwAAAAAy21Q/F+/DvgAAAABeg2w/wcVHvgAAAAC/FHs/Lr27MwAAAAAAAIA/vcVHPgAAAAC/FHs/Fe/DPgAAAABeg2w/2zkOPwAAAAAw21Q/8gQ1PwAAAAD0BDU/L9tUPwAAAADdOQ4/XoNsPwAAAAAa78M+vhR7PwAAAADGxUc+AACAPwAAAAAu3kyyvhR7PwAAAADIxUe+XYNsPwAAAAAb78O+M9tUPwAAAADXOQ6/9QQ1PwAAAADyBDW/2zkOPwAAAAAx21S/Fe/DPgAAAABfg2y/vMVHPgAAAAC/FHu/AAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAAP//fz8AAACAAAAAPwAAAACQDs4+QGgdPHUInj4Q5Rs9TIxjPkCTrD0a9hU+GPYVPjyTrD1MjGM+EOUbPXYInj5AaB08kA7OPgAAAAAAAAA/QGgdPLj4GD8I5Rs9xfswPziTrD3sHEc/GvYVPnqCWj9OjGM+mW1qP3QInj6vQXY/kA7OPmCKfT8BAAA/AACAP7j4GD9gin0/xfswP69Bdj/uHEc/mG1qP3mCWj96glo/mG1qP+4cRz+vQXY/xvswP1+KfT+5+Bg/AACAPwAAAD9fin0/jg7OPq5Bdj9yCJ4+mm1qP1CMYz56glo/HPYVPu4cRz9Ak6w9xfswPwDlGz24+Bg/AGgdPB8AAAABAAEAAgADAAMABAAFAAUABgAHAAcACAAJAAkACgALAAsADAANAA0ADgAPAA8AEAARABEAEgATABMAFAAVABUAFgAXABcAGAAZABkAGgAbABsAHAAdAB0AHgAfAB8AAQADAAMABQAHAAcACQALAAsADQAPAA8AEQATABMAFQAXABcAGQAbABsAHQAfAB8AAwAHAAcACwAPAA8AEwAXABcAGwAfAB8ABwAPAA8AFwAfAA=="
+        }
+    ]
+}

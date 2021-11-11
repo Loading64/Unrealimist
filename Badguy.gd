@@ -1,9 +1,11 @@
 extends KinematicBody
 var enemy_health = 150
+var ragdoll = 0
+func _ragdoll():
+	print("ragdollactivate")
 
-func _ready():
-	pass # Replace with function body.
 func _process(delta):
 	if enemy_health <= 0:
-		print("enemy dead")
-		queue_free()
+		_ragdoll()
+
+

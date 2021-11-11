@@ -105,7 +105,7 @@ func _input(event):
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-360), deg2rad(360))
 
 func update_weapon():
-	$"Head/HandLoc/doublebarrelshotgun".visible = false
+	$Head/HandLoc/doublebarrelshotgun.visible = false
 	$"Head/HandLoc/Revolver".visible = false
 	$"Head/HandLoc/Mas38".visible = false
 	$"Head/HandLoc/LAR".visible = false
@@ -135,7 +135,7 @@ func update_weapon():
 			print("Long Range equipped")
 			damage = 500
 			$"Head/HandLoc/LAR".visible = true
-			
+
 func _fire_shotgun():
 	if Input.is_action_just_pressed("Primary_fire"):
 		if not anim_player.is_playing() and ammo_in_weapon_sg != 0:
@@ -345,7 +345,6 @@ func _on_Timer_timeout():
 	air_acceleration = 1
 	pass # Replace with function body.
 
-
 func _on_GunTimer_timeout():
 	print("BULLETFIRED")
 	pass # Replace with function body.
@@ -353,17 +352,14 @@ func _on_GunTimer_timeout():
 func _on_StateTimer_timeout():
 	pass # Replace with function body.
 
-
 func _on_DashTimer_timeout():
 	player_state = state.STANDING
 	pass # Replace with function body.
-
 
 func _on_Area_body_entered(body):
 	if body.name == "KinematicBody":
 		print("u die lol")
 		get_tree().quit()
-
 
 func _on_Area2_body_entered(body):
 	if body.name == "KinematicBody":
