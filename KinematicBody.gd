@@ -243,6 +243,7 @@ func _process(_delta):
 	
 #This is for functioned called every frame/ and movement code.
 func _physics_process(delta):
+
 	_wallrun()
 	direction = Vector3()
 	full_contact = ground_check.is_colliding()
