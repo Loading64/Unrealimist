@@ -74,9 +74,6 @@ script = ExtResource( 2 )
 [node name="Skeleton" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4" index="0"]
 script = ExtResource( 3 )
 
-[node name="Object_6" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
 [node name="Physical Bone mixamorig_Hips_00" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.105516, 10.7537, -0.690046 )
 joint_type = 1
@@ -108,8 +105,8 @@ shape = SubResource( 3 )
 [node name="Physical Bone mixamorig_Spine1_02" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="5"]
 transform = Transform( 1, 0, 0, 0, 0.999971, 0.0076022, 0, -0.0076022, 0.999971, -0.105516, 12.6526, -0.850913 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.72717e-10, 0.585656 )
-body_offset = Transform( 1, 0, 0, 0, 1, 4.65661e-10, 0, -4.65661e-10, 1, 0, 0, -0.585656 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85993e-06, 0.585656 )
+body_offset = Transform( 1, 0, 0, 0, 1, 1.86265e-09, 0, -1.86265e-09, 1, 0, -2.86102e-06, -0.585656 )
 bone_name = "mixamorig_Spine1_02"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -120,10 +117,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 4 )
 
 [node name="Physical Bone mixamorig_Spine2_03" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="6"]
-transform = Transform( 1, 0, 0, 0, 0.999971, 0.0076022, 0, -0.0076022, 0.999971, -0.105516, 13.8233, -0.933021 )
+transform = Transform( 1, 0, 0, 0, 0.999971, 0.0076022, 0, -0.0076022, 0.999971, -0.105516, 13.8233, -0.933022 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.53368e-07, 0.658862 )
-body_offset = Transform( 1, 0, 0, 0, 1, 4.65661e-10, 0, -4.65661e-10, 1, 0, -9.53674e-07, -0.658862 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90612e-06, 0.658862 )
+body_offset = Transform( 1, 0, 0, 0, 1, 1.86265e-09, 0, -1.86265e-09, 1, 0, -1.90735e-06, -0.658862 )
 bone_name = "mixamorig_Spine2_03"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -162,10 +159,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 7 )
 
 [node name="Physical Bone mixamorig_LeftShoulder_07" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="9"]
-transform = Transform( -0.0015639, 0.923599, -0.383357, -0.00760761, -0.383357, -0.923569, -0.99997, 0.00147204, 0.00762589, 0.672993, 15.4718, -0.287899 )
+transform = Transform( -0.0015639, 0.923599, -0.383357, -0.00760761, -0.383357, -0.923569, -0.99997, 0.00147204, 0.0076259, 0.672993, 15.4718, -0.287899 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45609e-08, 9.59541e-07, 0.601746 )
-body_offset = Transform( 1, -1.3737e-08, -8.3819e-09, 8.61473e-09, 1, -9.74978e-09, -5.58794e-09, 1.99825e-08, 1, 5.96046e-08, -9.53674e-07, -0.601746 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07721e-07, 9.59532e-07, 0.601746 )
+body_offset = Transform( 1, -1.57161e-08, -1.90921e-08, 8.61473e-09, 1, -9.73432e-09, -5.58794e-09, 1.98824e-07, 1, 1.19209e-07, -9.53674e-07, -0.601746 )
 bone_name = "mixamorig_LeftShoulder_07"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -176,10 +173,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 8 )
 
 [node name="Physical Bone mixamorig_LeftArm_08" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="10"]
-transform = Transform( -0.0212865, 0.681642, -0.731377, -0.0551174, -0.731228, -0.6799, -0.998253, 0.0258388, 0.0531352, 2.46706, 14.1499, -0.347889 )
+transform = Transform( -0.0212865, 0.681641, -0.731377, -0.0551174, -0.731227, -0.679898, -0.998253, 0.0258387, 0.0531349, 2.46702, 14.1499, -0.34789 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0635932, -0.843613, 0.464215 )
-body_offset = Transform( 1, -2.6077e-08, 3.46452e-07, -1.86265e-09, 0.999999, -1.02352e-06, 3.72529e-09, -9.28645e-07, 0.999999, 0.063593, 0.843613, -0.464215 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0635944, -0.843584, 0.464185 )
+body_offset = Transform( 1, -3.91155e-08, 4.61936e-07, -1.86265e-09, 0.999998, -2.81783e-06, 1.11759e-08, -1.31736e-06, 0.999998, 0.0635942, 0.843584, -0.464185 )
 bone_name = "mixamorig_LeftArm_08"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -190,10 +187,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 9 )
 
 [node name="Physical Bone mixamorig_LeftForeArm_09" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="11"]
-transform = Transform( -0.0161542, 0.670523, -0.741713, -0.0606208, -0.741102, -0.66865, -0.99803, 0.034162, 0.0526195, 4.00695, 12.1516, -0.270272 )
+transform = Transform( -0.0161542, 0.670523, -0.741713, -0.0606208, -0.741102, -0.66865, -0.99803, 0.0341621, 0.0526195, 4.00695, 12.1516, -0.270272 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0699415, -0.855045, 0.240757 )
-body_offset = Transform( 1, -3.31551e-07, -3.72529e-09, 0, 1, -4.28408e-08, 0, 2.41445e-07, 1, 0.0699412, 0.855045, -0.240757 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0699416, -0.855046, 0.240757 )
+body_offset = Transform( 1, -4.20958e-07, -3.72529e-08, 0, 1, -1.31433e-07, 0, 4.55766e-07, 1, 0.0699413, 0.855046, -0.240757 )
 bone_name = "mixamorig_LeftForeArm_09"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -204,10 +201,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 10 )
 
 [node name="Physical Bone mixamorig_RightShoulder_011" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="12"]
-transform = Transform( -0.00475931, -0.923599, 0.38333, 0.00762691, -0.383357, -0.923569, 0.999959, -0.00147205, 0.00886879, -0.88401, 15.4718, -0.290419 )
+transform = Transform( -0.00475931, -0.923599, 0.38333, 0.00762691, -0.383357, -0.923569, 0.999959, -0.00147205, 0.0088688, -0.88401, 15.4718, -0.290419 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, 4.77319e-07, 0.601746 )
-body_offset = Transform( 1, -1.86265e-09, 0, -3.49246e-10, 1, -8.00355e-10, -9.31323e-10, 2.06812e-07, 1, 2.98023e-08, -4.76837e-07, -0.601746 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03627e-08, 4.41453e-07, 0.601746 )
+body_offset = Transform( 1, 2.79397e-09, 9.31323e-10, -2.91038e-09, 1, 5.88034e-08, -4.65661e-09, 2.96266e-07, 1, 2.98023e-08, -4.76837e-07, -0.601746 )
 bone_name = "mixamorig_RightShoulder_011"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -218,10 +215,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 11 )
 
 [node name="Physical Bone mixamorig_RightArm_012" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="13"]
-transform = Transform( -0.0320528, -0.681522, 0.731091, 0.073396, -0.731101, -0.678308, 0.996779, 0.0319175, 0.073455, -2.67797, 13.5712, -0.378594 )
+transform = Transform( -0.0320526, -0.681522, 0.731087, 0.0733955, -0.731099, -0.678306, 0.996773, 0.0319173, 0.0734545, -2.67797, 13.5712, -0.378596 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127023, -1.26526, 0.0750169 )
-body_offset = Transform( 0.999991, -3.12924e-07, -4.09782e-07, -1.15484e-07, 1, 1.53133e-06, 2.23517e-08, -3.00584e-07, 0.999996, -0.127022, 1.26526, -0.075017 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127026, -1.26527, 0.0750123 )
+body_offset = Transform( 0.999985, -4.4331e-07, -6.18398e-07, -1.2666e-07, 0.999999, 2.8566e-06, 6.70552e-08, -1.15251e-06, 0.999992, -0.127024, 1.26527, -0.0750132 )
 bone_name = "mixamorig_RightArm_012"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -232,10 +229,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="Physical Bone mixamorig_RightForeArm_013" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="14"]
-transform = Transform( -0.0331427, -0.670582, 0.741093, 0.0722274, -0.741167, -0.667422, 0.996837, 0.0314072, 0.0729991, -4.21729, 12.1502, -0.281012 )
+transform = Transform( -0.0331427, -0.670582, 0.741091, 0.0722274, -0.741167, -0.667421, 0.996837, 0.0314073, 0.072999, -4.21729, 12.1502, -0.281012 )
 joint_type = 1
 joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0833332, -0.855126, 0.242078 )
-body_offset = Transform( 1, 2.6077e-08, -7.45058e-09, 1.82539e-07, 0.999998, -1.60653e-08, 1.63913e-07, 2.71248e-07, 1, -0.0833331, 0.855124, -0.242078 )
+body_offset = Transform( 1, 7.45058e-08, -7.45058e-09, 1.8999e-07, 0.999998, 1.59256e-07, 1.56462e-07, 2.7474e-07, 0.999998, -0.0833331, 0.855124, -0.242077 )
 bone_name = "mixamorig_RightForeArm_013"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -246,10 +243,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 13 )
 
 [node name="Physical Bone mixamorig_LeftFoot_017" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="15"]
-transform = Transform( -0.982307, 0.187263, -0.00215837, -0.0986204, -0.507458, 0.856014, 0.159204, 0.841082, 0.516947, 1.71672, 0.602859, -1.08966 )
+transform = Transform( -0.982307, 0.187263, -0.00215837, -0.0986204, -0.507458, 0.856014, 0.159204, 0.841082, 0.516947, 1.71672, 0.602857, -1.08965 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, -2.38419e-06, 0.97869 )
-body_offset = Transform( 1, 0, 0, -2.98023e-08, 1, 0, 2.98023e-08, 5.96046e-08, 1, 1.19209e-07, 2.38419e-06, -0.97869 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.15256e-07, -5.00679e-06, 0.97869 )
+body_offset = Transform( 1, 0, 0, -2.98023e-08, 1, 0, 2.98023e-08, 5.96046e-08, 1, 7.15256e-07, 5.00679e-06, -0.97869 )
 bone_name = "mixamorig_LeftFoot_017"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -260,10 +257,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 16 )
 
 [node name="Physical Bone mixamorig_LeftToeBase_018" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="16"]
-transform = Transform( -0.982103, 0.153595, -0.109002, -0.114277, -0.0259103, 0.993104, 0.149713, 0.987787, 0.042999, 2.12062, 0.0877617, 1.04702 )
+transform = Transform( -0.982103, 0.153595, -0.109001, -0.114277, -0.0259101, 0.993099, 0.149713, 0.987785, 0.0429988, 2.12062, 0.0877618, 1.04702 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.90988e-07, 4.04661e-09, 0.362081 )
-body_offset = Transform( 1, -5.51343e-07, -1.39698e-08, 2.98023e-08, 0.999994, -1.11759e-08, -4.19095e-08, 8.19564e-08, 0.999993, 5.96046e-07, 0, -0.362078 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11993e-06, -1.07071e-07, 0.362082 )
+body_offset = Transform( 1, -6.70552e-07, 1.29919e-07, 2.98023e-08, 0.999991, -3.35276e-08, -1.16415e-07, 2.19792e-07, 0.999988, 1.07288e-06, 1.19209e-07, -0.362078 )
 bone_name = "mixamorig_LeftToeBase_018"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -274,10 +271,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 17 )
 
 [node name="Physical Bone mixamorig_RightFoot_022" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="17"]
-transform = Transform( -0.982492, -0.186245, 0.00305681, 0.098337, -0.504675, 0.857687, -0.158198, 0.842972, 0.514159, -1.92865, 0.596662, -1.10002 )
+transform = Transform( -0.982487, -0.186244, 0.00305689, 0.0983364, -0.504672, 0.857684, -0.158198, 0.842966, 0.514158, -1.92865, 0.596667, -1.10001 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06132e-06, -3.0966e-06, 0.983997 )
-body_offset = Transform( 0.999994, -4.32134e-07, -1.56462e-07, 5.96046e-08, 0.999992, 1.78814e-07, -7.45058e-09, -5.36442e-07, 0.999998, -1.90735e-06, 2.92063e-06, -0.983995 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01119e-06, -6.72015e-06, 0.983992 )
+body_offset = Transform( 0.999988, -7.59959e-07, -3.94881e-07, 8.9407e-08, 0.999986, 9.53674e-07, -8.9407e-08, -8.04663e-07, 0.999995, -2.6226e-06, 5.78165e-06, -0.983987 )
 bone_name = "mixamorig_RightFoot_022"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -288,10 +285,10 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 20 )
 
 [node name="Physical Bone mixamorig_RightToeBase_023" type="PhysicalBone" parent="Sketchfab_model/Racerfbx/Object_2/RootNode/Object_4/Skeleton" index="18"]
-transform = Transform( -0.982329, -0.153862, 0.106573, 0.111832, -0.0259097, 0.993389, -0.150084, 0.987753, 0.0426585, -2.33069, 0.088362, 1.04948 )
+transform = Transform( -0.982328, -0.153862, 0.106573, 0.111831, -0.0259097, 0.993389, -0.150085, 0.987753, 0.0426586, -2.33069, 0.088361, 1.04948 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1387e-06, 1.19211e-07, 0.361442 )
-body_offset = Transform( 1, 2.98023e-08, 1.95578e-08, -7.45058e-07, 1, 0, -1.21072e-08, -3.72529e-09, 1, -2.14577e-06, -1.19209e-07, -0.361442 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79383e-06, 4.2029e-07, 0.361443 )
+body_offset = Transform( 1, 2.98023e-08, 5.7742e-08, -1.2666e-06, 1, 1.56462e-07, -1.58325e-07, -3.72529e-09, 1, -3.8147e-06, -4.76837e-07, -0.361443 )
 bone_name = "mixamorig_RightToeBase_023"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0

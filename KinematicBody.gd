@@ -237,6 +237,7 @@ func _reload():
 
 #Individual frame basis for weapon firing and inventory.
 func _process(_delta):
+	print(global_transform.basis)
 	_reload()
 	_fire()
 	_inventory()
